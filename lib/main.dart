@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/auth/presentation/screen/sign_in_screen.dart';
+import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/app_theme.dart';
 
 void main() {
@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: SignInScreen(),
+      initialRoute: RouteGenerator.signInScreen,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

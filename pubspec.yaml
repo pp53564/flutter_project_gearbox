@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  reactive_forms: ^17.0.1
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -59,17 +61,30 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/fonts/
+    - assets/fonts/
 
   fonts:
     - family: SF Pro Rounded
       fonts:
-        - asset: assets/fonts/SF-Pro-Rounded-Black.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Bold.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Heavy.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Light.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Medium.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Regular.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Semibold.otf
-        - asset: assets/fonts/SF-Pro-Rounded-Thin.otf
-        - asset: assets/fonts/SF-Pro-Rounded-UltraLight.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Black.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Bold.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Heavy.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Light.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Medium.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Regular.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Semibold.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Thin.otf
+        - asset: assets/fonts/SF-Pro-Rounded/SF-Pro-Rounded-UltraLight.otf
+
+    - family: Roboto Condensed
+      fonts:
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-Black.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-BlackItalic.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-Bold.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-BoldItalic.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-Italic.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-Light.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-LightItalic.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-Medium.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-MediumItalic.ttf
+        - asset: assets/fonts/roboto-condensed/RobotoCondensed-Regular.ttf

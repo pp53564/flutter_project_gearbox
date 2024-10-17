@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/auth/presentation/screen/sign_in_screen.dart';
+
+import '../../../blogs/presentation/screen/blogs_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedScreenIndex = 0;
 
   final _screens = const [
-    SignInScreen(),
+    BlogsScreen(),
   ];
 
   @override
