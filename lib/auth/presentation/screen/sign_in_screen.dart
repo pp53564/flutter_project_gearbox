@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
+import 'package:gearbox/core/constants.dart';
+import 'package:gearbox/core/route_generator.dart';
+import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-import '../../../common/presentation/widget/primary_button.dart';
-import '../../../core/constants.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -20,7 +21,8 @@ class _SignInScreenState extends State<SignInScreen> {
   final form = FormGroup({
     'email': FormControl<String>(
         validators: [Validators.required, Validators.email]),
-    'password': FormControl<String>(validators: [Validators.required]),
+    'password': FormControl<String>(
+        validators: [Validators.required, Validators.minLength(8)]),
   });
 
   @override
@@ -42,7 +44,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomTextFormField(
                   formControlName: 'email',
                   label: AppStrings.emailHint,
-                  validationMess: {'required': (_) => AppStrings.emailEmpty},
+                  validationMess: {
+                    'required': (_) => AppStrings.emailEmpty,
+                    'email': (_) => AppStrings.emailValidation
+                  },
                   obscureText: false,
                 ),
                 const SizedBox(height: 20),
@@ -50,17 +55,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   formControlName: 'password',
                   label: AppStrings.passwordHint,
                   validationMess: {
-                    'required': (_) {
-                      return AppStrings.passwordEmpty;
-                    }
+                    'required': (_) => AppStrings.passwordEmpty,
+                    'minLength': (_) => AppStrings.passwordMinLength
                   },
                   obscureText: true,
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    'Forgot password?',
-                    style: TextStyle(color: Colors.black, fontSize: 12),
+                  child: GestureDetector(
+                    onTap: _redirectToSingUpScreen,
+                    child: const Text(
+                      AppStrings.forgotPassword,
+                      style: TextStyle(color: Colors.black, fontSize: 12),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -73,10 +80,24 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 const Spacer(),
-                const Align(
+                Align(
                   alignment: Alignment.bottomCenter,
-                  child: Text('Don’t have an account? Sign up'),
-                )
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppStrings.dontHaveAccount,
+                        style: context.textDescriptionAuth,
+                      ),
+                      const SizedBox(width: 5),
+                      GestureDetector(
+                        onTap: _redirectToSingUpScreen,
+                        child: Text(AppStrings.signUp, style: context.textLink),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
               ],
             ),
           ),
@@ -90,4 +111,7 @@ class _SignInScreenState extends State<SignInScreen> {
     // Navigator.push(
     //     context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
+
+  void _redirectToSingUpScreen() =>
+      Navigator.of(context).pushNamed(RouteGenerator.signUpScreen);
 }

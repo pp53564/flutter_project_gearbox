@@ -20,6 +20,9 @@ const _errorTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
 const _buttonTextStyle =
     TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: whiteColor);
 
+const _linkTextStyle = TextStyle(
+    fontSize: 16, fontWeight: FontWeight.bold, color: primaryColorLight);
+
 extension CustomTextStyle on TextTheme {
   TextStyle get title => _titleTextStyle;
 
@@ -34,4 +37,6 @@ extension CustomTextStyle on TextTheme {
   TextStyle get error => _errorTextStyle;
 
   TextStyle get buttonText => _buttonTextStyle;
+
+  TextStyle get linkText => _linkTextStyle;
 }

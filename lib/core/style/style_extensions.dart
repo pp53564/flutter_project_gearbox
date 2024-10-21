@@ -33,4 +33,6 @@ extension StyleExtension on BuildContext {
   TextStyle get textPlaceholder => Theme.of(this).textTheme.placeholder;
 
   TextStyle get textButton => Theme.of(this).textTheme.buttonText;
+
+  TextStyle get textLink => Theme.of(this).textTheme.linkText;
 }
