@@ -1,0 +1,20 @@
+{
+  "signIn": "Prijavi se",
+  "signUp": "Registriraj se",
+  "emailHint": "E-mail",
+  "passwordHint": "Lozinka",
+  "emailEmpty": "E-mail ne smije biti prazan",
+  "passwordEmpty": "Lozinka ne smije biti prazna",
+  "signInTitle": "Dobrodošli u Gearbox!",
+  "signUpTitle": "Ubacite u brzinu, registrirajte se!",
+  "signInSubTitle": "Prijavite se kako biste podijelili svoje znanje i strast za automobilima.",
+  "signUpSubTitle": "Pridružite se zajednici i nahranite svoju ljubav prema automobilima",
+  "emailValidation": "Unesite važeću e-mail adresu",
+  "passwordMinLength": "Lozinka je prekratka",
+  "dontHaveAccount": "Nemate račun?",
+  "alreadyHaveAccount": "Već imate račun?",
+  "usernameHint": "Korisničko ime",
+  "usernameEmpty": "Korisničko ime ne smije biti prazno",
+  "passwordConfirmHint": "Potvrdi lozinku",
+  "forgotPassword": "Zaboravili ste lozinku?"
+}

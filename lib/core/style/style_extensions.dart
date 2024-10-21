@@ -20,6 +20,9 @@ extension StyleExtension on BuildContext {
 
   Color get colorBorder => Theme.of(this).extension<AppColors>()!.borderColor!;
 
+  Color get colorBottomNavigationIcon =>
+      Theme.of(this).extension<AppColors>()!.bottomNavigationIconColor!;
+
   TextStyle get textTitle => Theme.of(this).textTheme.title;
 
   TextStyle get textStandard => Theme.of(this).textTheme.standard;

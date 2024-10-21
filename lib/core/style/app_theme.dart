@@ -20,6 +20,7 @@ class AppTheme {
           errorColor: errorColorLight,
           placeholderColor: placeholderColorLight,
           borderColor: borderColorLight,
+          bottomNavigationIconColor: bottomNavigationIconColorLight,
         )
       ]);
 }

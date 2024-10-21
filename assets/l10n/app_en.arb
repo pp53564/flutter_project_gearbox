@@ -1,0 +1,20 @@
+{
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "emailHint": "Email",
+  "passwordHint": "Password",
+  "emailEmpty": "Email must not be empty",
+  "passwordEmpty": "Password must not be empty",
+  "signInTitle": "Welcome to the Gearbox!",
+  "signUpTitle": "Shift into the gear, sign up!",
+  "signInSubTitle": "Sign in to share your knowledge and passion for cars.",
+  "signUpSubTitle": "Join the community and fuel your love for cars",
+  "emailValidation": "Please enter valid email address",
+  "passwordMinLength": "Password is too short",
+  "dontHaveAccount": "Don’t have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "usernameHint": "Username",
+  "usernameEmpty": "Username must not be empty",
+  "passwordConfirmHint": "Confirm password",
+  "forgotPassword": "Forgot password?"
+}
