@@ -39,4 +39,15 @@ extension LocalizationExtension on BuildContext {
       AppLocalizations.of(this)!.passwordConfirmHint;
 
   String get forgotPassword => AppLocalizations.of(this)!.forgotPassword;
+
+  String get blogs => AppLocalizations.of(this)!.blogs;
+
+  String get explore => AppLocalizations.of(this)!.explore;
+
+  String get newBottomNavigation =>
+      AppLocalizations.of(this)!.newBottomNavigation;
+
+  String get saved => AppLocalizations.of(this)!.saved;
+
+  String get garage => AppLocalizations.of(this)!.garage;
 }

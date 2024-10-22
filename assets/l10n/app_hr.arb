@@ -16,5 +16,10 @@
   "usernameHint": "Korisničko ime",
   "usernameEmpty": "Korisničko ime ne smije biti prazno",
   "passwordConfirmHint": "Potvrdi lozinku",
-  "forgotPassword": "Zaboravili ste lozinku?"
+  "forgotPassword": "Zaboravili ste lozinku?",
+  "blogs": "Blogovi",
+  "explore": "Istraži",
+  "new": "Novo",
+  "saved": "Spremljeno",
+  "garage": "Postavke"
 }

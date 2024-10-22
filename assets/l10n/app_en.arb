@@ -16,5 +16,10 @@
   "usernameHint": "Username",
   "usernameEmpty": "Username must not be empty",
   "passwordConfirmHint": "Confirm password",
-  "forgotPassword": "Forgot password?"
+  "forgotPassword": "Forgot password?",
+  "blogs": "Blogs",
+  "explore": "Explore",
+  "newBottomNavigation": "New",
+  "saved": "Saved",
+  "garage": "Garage"
 }
