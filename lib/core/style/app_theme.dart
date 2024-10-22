@@ -9,7 +9,8 @@ class AppTheme {
       useMaterial3: true,
       scaffoldBackgroundColor: backgroundColorLight,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: backgroundColorLight),
+        backgroundColor: backgroundColorLight,
+      ),
       shadowColor: shadowColorLight,
       extensions: const [
         AppColors(

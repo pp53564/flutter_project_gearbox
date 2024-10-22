@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:gearbox/common/presentation/screen/home_screen.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
 import 'package:gearbox/core/constants.dart';
@@ -16,13 +17,16 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final bool _isLoading = false;
-  bool hasPasswordError = false;
 
   final form = FormGroup({
-    'email': FormControl<String>(
-        validators: [Validators.required, Validators.email]),
-    'password': FormControl<String>(
-        validators: [Validators.required, Validators.minLength(8)]),
+    'email': FormControl<String>(validators: [
+      Validators.required,
+      Validators.email,
+    ]),
+    'password': FormControl<String>(validators: [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
   });
 
   @override
@@ -44,21 +48,20 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomTextFormField(
                   formControlName: 'email',
                   label: AppStrings.emailHint,
-                  validationMess: {
+                  validationMessages: {
                     'required': (_) => AppStrings.emailEmpty,
                     'email': (_) => AppStrings.emailValidation
                   },
-                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
                   formControlName: 'password',
                   label: AppStrings.passwordHint,
-                  validationMess: {
+                  isPassword: true,
+                  validationMessages: {
                     'required': (_) => AppStrings.passwordEmpty,
                     'minLength': (_) => AppStrings.passwordMinLength
                   },
-                  obscureText: true,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -74,7 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ReactiveFormConsumer(
                   key: const Key('submit'),
                   builder: (context, form, _) => PrimaryButton(
-                    onPressed: () => login(context, form),
+                    onPressed: () => _login(context, form),
                     text: AppStrings.signIn,
                     isLoading: _isLoading,
                   ),
@@ -106,10 +109,10 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  login(context, form) {
+  void _login(final BuildContext context, final FormGroup form) {
     print(form.value);
-    // Navigator.push(
-    //     context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   void _redirectToSingUpScreen() =>

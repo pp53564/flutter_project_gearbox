@@ -15,14 +15,15 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final bool _isLoading = false;
-  bool hasPasswordError = false;
 
   final form = FormGroup({
     'email': FormControl<String>(validators: [
       Validators.required,
       Validators.email,
     ]),
-    'username': FormControl<String>(validators: [Validators.required]),
+    'username': FormControl<String>(
+      validators: [Validators.required],
+    ),
     'password': FormControl<String>(validators: [
       Validators.required,
       Validators.minLength(8),
@@ -52,44 +53,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 CustomTextFormField(
                   formControlName: 'email',
                   label: AppStrings.emailHint,
-                  validationMess: {
+                  validationMessages: {
                     'required': (_) => AppStrings.emailEmpty,
                     'email': (_) => AppStrings.emailValidation
                   },
-                  obscureText: false,
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
                   formControlName: 'username',
                   label: AppStrings.usernameHint,
-                  validationMess: {'required': (_) => AppStrings.usernameEmpty},
-                  obscureText: false,
+                  validationMessages: {
+                    'required': (_) => AppStrings.usernameEmpty
+                  },
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
                   formControlName: 'password',
                   label: AppStrings.passwordHint,
-                  validationMess: {
+                  isPassword: true,
+                  validationMessages: {
                     'required': (_) => AppStrings.passwordEmpty,
                     'minLength': (_) => AppStrings.passwordMinLength
                   },
-                  obscureText: true,
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
-                  formControlName: 'password',
+                  formControlName: 'confirm_password',
                   label: AppStrings.passwordConfirmHint,
-                  validationMess: {
+                  isPassword: true,
+                  validationMessages: {
                     'required': (_) => AppStrings.passwordEmpty,
                     'minLength': (_) => AppStrings.passwordMinLength
                   },
-                  obscureText: true,
                 ),
                 const SizedBox(height: 20),
                 ReactiveFormConsumer(
                   key: const Key('submit'),
                   builder: (context, form, _) => PrimaryButton(
-                    onPressed: () => login(context, form),
+                    onPressed: () => _register(context, form),
                     text: AppStrings.signUp,
                     isLoading: _isLoading,
                   ),
@@ -121,11 +122,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  login(context, form) {
-    print(form.value);
-    // Navigator.push(
-    //     context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-  }
+  void _register(final BuildContext context, final FormGroup form) =>
+      print(form.value);
 
   void _redirectToSingInScreen() => Navigator.of(context).pop();
 }

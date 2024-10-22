@@ -5,23 +5,23 @@ import 'package:reactive_forms/reactive_forms.dart';
 class CustomTextFormField extends StatelessWidget {
   final String formControlName;
   final String label;
-  final bool obscureText;
-  final Map<String, String Function(Object)>? validationMess;
+  final bool isPassword;
+  final Map<String, String Function(Object)>? validationMessages;
 
   const CustomTextFormField({
     super.key,
     required this.formControlName,
     required this.label,
-    required this.obscureText,
-    this.validationMess,
+    this.isPassword = false,
+    this.validationMessages,
   });
 
   @override
   Widget build(BuildContext context) {
     return ReactiveTextField<String>(
       formControlName: formControlName,
-      validationMessages: validationMess,
-      obscureText: obscureText,
+      validationMessages: validationMessages,
+      obscureText: isPassword,
       decoration: InputDecoration(
         fillColor: context.colorBackground,
         labelText: label,
