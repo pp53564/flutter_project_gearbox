@@ -28,9 +28,7 @@ class PrimaryButton extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         alignment: Alignment.center,
         child: isLoading
-            ? const CircularProgressIndicator(
-                color: Colors.white,
-              )
+            ? const CircularProgressIndicator(color: Colors.white)
             : Text(text, style: context.textButton),
       ),
     );

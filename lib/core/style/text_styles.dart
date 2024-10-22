@@ -8,11 +8,8 @@ const _titleTextStyle = TextStyle(fontSize: 28, fontWeight: FontWeight.w700);
 const _standardTextStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
 const _descriptionTextStyle =
     TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
-const _descriptionAuthTextStyle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    fontFamily: _fontSFProRounded,
-    color: Colors.black);
+const _descriptionAuthTextStyle =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black);
 const _placeholderTextStyle = TextStyle(
     fontSize: 16, fontWeight: FontWeight.w400, color: placeholderColorLight);
 const _errorTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);

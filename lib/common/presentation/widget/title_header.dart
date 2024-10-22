@@ -25,7 +25,7 @@ class TitleHeader extends StatelessWidget {
             subtitle,
             style: context.textDescriptionAuth,
           ),
-        )
+        ),
       ],
     );
   }

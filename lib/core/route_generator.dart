@@ -6,10 +6,10 @@ import 'package:gearbox/common/presentation/screen/home_screen.dart';
 import '../blogs/presentation/screen/blogs_screen.dart';
 
 class RouteGenerator {
-  static const signInScreen = '/signIn';
-  static const signUpScreen = '/signUp';
-  static const homeScreen = '/home';
-  static const blogsScreen = '/blogs';
+  static const String signInScreen = '/signIn';
+  static const String signUpScreen = '/signUp';
+  static const String homeScreen = '/home';
+  static const String blogsScreen = '/blogs';
 
   RouteGenerator._();
 
