@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
-import 'package:gearbox/common/presentation/screen/home_screen.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
+import 'package:gearbox/core/di.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatefulHookConsumerWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  final bool _isLoading = false;
-
+class _SignInScreenState extends ConsumerState<SignInScreen> {
   final form = FormGroup({
     'email': FormControl<String>(validators: [
       Validators.required,
@@ -31,6 +32,25 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = useState(false);
+    final authState = ref.watch(authNotifierProvider);
+    useValueChanged<AuthState, void>(authState, (_, __) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        switch (authState) {
+          case AuthStateLoading():
+            isLoading.value = true;
+            break;
+          case AuthStateSuccess():
+            isLoading.value = false;
+            Navigator.pushReplacementNamed(context, RouteGenerator.homeScreen);
+            break;
+          case AuthStateFailure(failure: final failure):
+            print(failure);
+            isLoading.value = false;
+            break;
+        }
+      });
+    });
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -78,8 +98,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   key: const Key('submit'),
                   builder: (context, form, _) => PrimaryButton(
                     onPressed: () => _login(context, form),
-                    text:context.signIn,
-                    isLoading: _isLoading,
+                    text: context.signIn,
+                    isLoading: isLoading.value,
                   ),
                 ),
                 const Spacer(),
@@ -109,12 +129,12 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  void _login(final BuildContext context, final FormGroup form) {
-    print(form.value);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+  Future<void> _login(final BuildContext context, final FormGroup form) async {
+    final email = form.control('email').value;
+    final password = form.control('password').value;
+    print(email);
+    await ref.read(authNotifierProvider.notifier).signIn(email, password);
   }
 
-  void _redirectToSingUpScreen() =>
-      Navigator.of(context).pushNamed(RouteGenerator.signUpScreen);
+  void _redirectToSingUpScreen() => Navigator.of(context).pushNamed(RouteGenerator.signUpScreen);
 }

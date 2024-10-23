@@ -28,15 +28,13 @@ extension LocalizationExtension on BuildContext {
 
   String get dontHaveAccount => AppLocalizations.of(this)!.dontHaveAccount;
 
-  String get alreadyHaveAccount =>
-      AppLocalizations.of(this)!.alreadyHaveAccount;
+  String get alreadyHaveAccount => AppLocalizations.of(this)!.alreadyHaveAccount;
 
   String get usernameHint => AppLocalizations.of(this)!.usernameHint;
 
   String get usernameEmpty => AppLocalizations.of(this)!.usernameEmpty;
 
-  String get passwordConfirmHint =>
-      AppLocalizations.of(this)!.passwordConfirmHint;
+  String get passwordConfirmHint => AppLocalizations.of(this)!.passwordConfirmHint;
 
   String get forgotPassword => AppLocalizations.of(this)!.forgotPassword;
 
@@ -44,8 +42,7 @@ extension LocalizationExtension on BuildContext {
 
   String get explore => AppLocalizations.of(this)!.explore;
 
-  String get newBottomNavigation =>
-      AppLocalizations.of(this)!.newBottomNavigation;
+  String get newBottomNavigation => AppLocalizations.of(this)!.newBottomNavigation;
 
   String get saved => AppLocalizations.of(this)!.saved;
 

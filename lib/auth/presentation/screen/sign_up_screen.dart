@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
+import 'package:gearbox/core/di.dart';
 import 'package:gearbox/core/localization_extension.dart';
+import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatefulHookConsumerWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final bool _isLoading = false;
-
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final form = FormGroup({
     'email': FormControl<String>(validators: [
       Validators.required,
@@ -36,6 +39,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = useState(false);
+    final authState = ref.watch(authNotifierProvider);
+    useValueChanged<AuthState, void>(authState, (_, __) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        switch (authState) {
+          case AuthStateLoading():
+            isLoading.value = true;
+            break;
+          case AuthStateSuccess():
+            isLoading.value = false;
+            Navigator.pushReplacementNamed(context, RouteGenerator.homeScreen);
+            break;
+          case AuthStateFailure(failure: final failure):
+            print(failure);
+            isLoading.value = false;
+            break;
+        }
+      });
+    });
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -76,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
-                  formControlName: 'password',
+                  formControlName: 'confirm_password',
                   label: context.passwordConfirmHint,
                   isPassword: true,
                   validationMessages: {
@@ -90,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   builder: (context, form, _) => PrimaryButton(
                     onPressed: () => _register(context, form),
                     text: context.signUp,
-                    isLoading: _isLoading,
+                    isLoading: isLoading.value,
                   ),
                 ),
                 const Spacer(),
@@ -120,8 +142,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  void _register(final BuildContext context, final FormGroup form) =>
-      print(form.value);
+  void _register(final BuildContext context, final FormGroup form) {
+    if (form.valid) {
+      ref.read(authNotifierProvider.notifier).signUp(
+            email: form.control('email').value,
+            username: form.control('username').value,
+            password: form.control('password').value,
+          );
+    } else {
+      form.markAllAsTouched();
+    }
+  }
 
   void _redirectToSingInScreen() => Navigator.of(context).pop();
 }
