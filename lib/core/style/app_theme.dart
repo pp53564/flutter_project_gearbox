@@ -22,6 +22,8 @@ class AppTheme {
           placeholderColor: placeholderColorLight,
           borderColor: borderColorLight,
           bottomNavigationIconColor: bottomNavigationIconColorLight,
+          paginationContainerColor: paginationContainerColorLight,
+          colorWithOpacity: colorWithOpacityLight,
         )
       ]);
 }

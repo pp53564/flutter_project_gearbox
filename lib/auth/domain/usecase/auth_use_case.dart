@@ -12,7 +12,8 @@ class AuthUseCase {
     return userRepository.signIn(email, password);
   }
 
-  Future<Either<Failure, User>> signUp(String email, String username, String password) async {
-    return userRepository.signUp(email, username, password);
+  Future<Either<Failure, User>> signUp(
+      String email, String username, String password, String confirmPassword) async {
+    return userRepository.signUp(email, username, password, confirmPassword);
   }
 }

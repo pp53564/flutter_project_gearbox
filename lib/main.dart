@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale('en'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: RouteGenerator.signInScreen,
+      initialRoute: RouteGenerator.homeScreen,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

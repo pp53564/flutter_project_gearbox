@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/auth/presentation/screen/sign_in_screen.dart';
 import 'package:gearbox/auth/presentation/screen/sign_up_screen.dart';
+import 'package:gearbox/blogs/presentation/screen/blogs_screen.dart';
 import 'package:gearbox/common/presentation/screen/home_screen.dart';
-
-import '../blogs/presentation/screen/blogs_screen.dart';
 
 class RouteGenerator {
   static const String signInScreen = '/signIn';

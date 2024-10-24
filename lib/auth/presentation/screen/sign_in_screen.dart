@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:gearbox/common/presentation/widget/CustomSnackBar.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
 import 'package:gearbox/core/di.dart';
+import 'package:gearbox/core/failure.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
@@ -45,7 +47,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             Navigator.pushReplacementNamed(context, RouteGenerator.homeScreen);
             break;
           case AuthStateFailure(failure: final failure):
-            print(failure);
+            String message =
+                failure is UserIsNotFound ? context.userIsNotFound : failure.toString();
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => CustomSnackBar.show(context, message),
+            );
             isLoading.value = false;
             break;
         }
@@ -132,7 +138,6 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   Future<void> _login(final BuildContext context, final FormGroup form) async {
     final email = form.control('email').value;
     final password = form.control('password').value;
-    print(email);
     await ref.read(authNotifierProvider.notifier).signIn(email, password);
   }
 

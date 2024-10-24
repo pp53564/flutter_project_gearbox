@@ -9,5 +9,6 @@ abstract interface class UserRepository {
     final String email,
     final String username,
     final String password,
+    final String confirmPassword,
   );
 }

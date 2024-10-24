@@ -9,7 +9,7 @@ class User {
   final String id;
   final String email;
   final String username;
-  final String profileImageUrl;
+  final String? profileImageUrl;
 
   User({
     required this.token,
@@ -17,7 +17,7 @@ class User {
     required this.id,
     required this.email,
     required this.username,
-    required this.profileImageUrl,
+    this.profileImageUrl,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

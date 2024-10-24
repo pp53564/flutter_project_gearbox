@@ -19,7 +19,67 @@
   "forgotPassword": "Zaboravili ste lozinku?",
   "blogs": "Blogovi",
   "explore": "Istraži",
-  "new": "Novo",
+  "newBottomNavigation": "Novo",
   "saved": "Spremljeno",
-  "garage": "Postavke"
+  "garage": "Postavke",
+  "userAlreadyExists": "Korisnik već postoji",
+  "userIsNotFound": "Korisnik ne postoji",
+  "passwordsMustMatch": "Lozinke moraju biti iste",
+  "latest": "Najnoviji",
+  "viewMore": "vidi više",
+  "dateDiffFewSeconds": "prije nekoliko sekundi",
+  "dateDiffMinute": "prije minutu",
+  "dateDiffMinutes": "prije {diff} minuta",
+  "@dateDiffMinutes": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffHour": "prije sat vremena",
+  "dateDiffHours": "prije {diff} sati",
+  "@dateDiffHours": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffDay": "prije dan",
+  "dateDiffDays": "prije {diff} dana",
+  "@dateDiffDays": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffWeek": "prije tjedan dana",
+  "dateDiffWeeks": "prije {diff} tjedana",
+  "@dateDiffWeeks": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffMonth": "prije mjesec dana",
+  "dateDiffMonths": "prije {diff} mjeseci",
+  "@dateDiffMonths": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffYear": "prije godinu dana",
+  "dateDiffYears": "prije {diff} godina",
+  "@dateDiffYears": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  }
 }

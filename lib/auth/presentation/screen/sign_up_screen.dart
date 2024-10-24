@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:gearbox/common/presentation/widget/CustomSnackBar.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
 import 'package:gearbox/core/di.dart';
+import 'package:gearbox/core/failure.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
@@ -19,23 +21,30 @@ class SignUpScreen extends StatefulHookConsumerWidget {
 }
 
 class _SignUpScreenState extends ConsumerState<SignUpScreen> {
-  final form = FormGroup({
-    'email': FormControl<String>(validators: [
-      Validators.required,
-      Validators.email,
-    ]),
-    'username': FormControl<String>(
-      validators: [Validators.required],
-    ),
-    'password': FormControl<String>(validators: [
-      Validators.required,
-      Validators.minLength(8),
-    ]),
-    'confirm_password': FormControl<String>(validators: [
-      Validators.required,
-      Validators.minLength(8),
-    ]),
-  });
+  final form = FormGroup(
+    {
+      'email': FormControl<String>(validators: [
+        Validators.required,
+        Validators.email,
+      ]),
+      'username': FormControl<String>(
+        validators: [Validators.required],
+      ),
+      'password': FormControl<String>(validators: [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      'confirm_password': FormControl<String>(
+        validators: [
+          Validators.required,
+          Validators.minLength(8),
+        ],
+      ),
+    },
+    validators: [
+      Validators.mustMatch('password', 'confirm_password'),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +61,18 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
             Navigator.pushReplacementNamed(context, RouteGenerator.homeScreen);
             break;
           case AuthStateFailure(failure: final failure):
-            print(failure);
+            String message =
+                failure is UserAlreadyExists ? context.userAlreadyExists : failure.toString();
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => CustomSnackBar.show(context, message),
+            );
             isLoading.value = false;
             break;
         }
       });
     });
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -103,7 +117,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   isPassword: true,
                   validationMessages: {
                     'required': (_) => context.passwordEmpty,
-                    'minLength': (_) => context.passwordMinLength
+                    'minLength': (_) => context.passwordMinLength,
+                    'mustMatch': (_) => context.passwordsMustMatch
                   },
                 ),
                 const SizedBox(height: 20),
@@ -143,15 +158,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   }
 
   void _register(final BuildContext context, final FormGroup form) {
-    if (form.valid) {
-      ref.read(authNotifierProvider.notifier).signUp(
-            email: form.control('email').value,
-            username: form.control('username').value,
-            password: form.control('password').value,
-          );
-    } else {
-      form.markAllAsTouched();
-    }
+    ref.read(authNotifierProvider.notifier).signUp(
+          email: form.control('email').value,
+          username: form.control('username').value,
+          password: form.control('password').value,
+          confirmPassword: form.control('confirm_password').value,
+        );
   }
 
   void _redirectToSingInScreen() => Navigator.of(context).pop();

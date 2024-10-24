@@ -21,5 +21,66 @@
   "explore": "Explore",
   "newBottomNavigation": "New",
   "saved": "Saved",
-  "garage": "Garage"
+  "garage": "Garage",
+  "userAlreadyExists": "User already exists",
+  "userIsNotFound": "User is not found",
+  "passwordsMustMatch": "Passwords must match",
+  "latest": "Latest",
+  "viewMore": "View more",
+  "dateDiffFewSeconds": "a few seconds ago",
+  "dateDiffMinute": "a min ago",
+  "dateDiffMinutes": "{diff} min ago",
+  "@dateDiffMinutes": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffHour": "an hour ago",
+  "dateDiffHours": "{diff} hours ago",
+  "@dateDiffHours": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffDay": "a day ago",
+  "dateDiffDays": "{diff} days ago",
+  "@dateDiffDays": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffWeek": "a week ago",
+  "dateDiffWeeks": "{diff} weeks ago",
+  "@dateDiffWeeks": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffMonth": "a month ago",
+  "dateDiffMonths": "{diff} months ago",
+  "@dateDiffMonths": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffYear": "a year ago",
+  "dateDiffYears": "{diff} years ago",
+  "@dateDiffYears": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  }
 }
+

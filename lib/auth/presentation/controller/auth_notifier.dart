@@ -22,9 +22,9 @@ class AuthNotifier extends Notifier<AuthState> {
     );
   }
 
-  void signUp({required email, required username, required password}) async {
+  void signUp({required email, required username, required password, confirmPassword}) async {
     state = AuthStateLoading();
-    final result = await usecase.signUp(email, username, password);
+    final result = await usecase.signUp(email, username, password, confirmPassword);
 
     result.fold(
       (failure) => state = AuthStateFailure(failure: failure),
