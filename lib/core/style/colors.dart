@@ -12,6 +12,7 @@ const borderColorLight = Color(0XFF212526);
 const bottomNavigationIconColorLight = Color(0xFF007AFF);
 const paginationContainerColorLight = Color(0xFFBFBFBF);
 const colorWithOpacityLight = Color.fromARGB(112, 191, 191, 191);
+const colorBottomNavigationRowLight = Color(0x59DADADA);
 
 class AppColors extends ThemeExtension<AppColors> {
   final Color? backgroundColor;
@@ -24,6 +25,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color? bottomNavigationIconColor;
   final Color? paginationContainerColor;
   final Color? colorWithOpacity;
+  final Color? colorBottomNavigationRow;
 
   const AppColors({
     required this.backgroundColor,
@@ -36,6 +38,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.bottomNavigationIconColor,
     required this.paginationContainerColor,
     required this.colorWithOpacity,
+    required this.colorBottomNavigationRow,
   });
 
   @override
@@ -59,6 +62,7 @@ class AppColors extends ThemeExtension<AppColors> {
         bottomNavigationIconColor: bottomNavigationIconColor ?? this.bottomNavigationIconColor,
         paginationContainerColor: paginationContainerColor ?? this.paginationContainerColor,
         colorWithOpacity: colorWithOpacity ?? this.colorWithOpacity,
+        colorBottomNavigationRow: colorBottomNavigationRow ?? this.colorBottomNavigationRow,
       );
 
   @override
@@ -79,6 +83,8 @@ class AppColors extends ThemeExtension<AppColors> {
             Color.lerp(bottomNavigationIconColor, other.bottomNavigationIconColor, t),
         paginationContainerColor:
             Color.lerp(paginationContainerColor, other.paginationContainerColor, t),
-        colorWithOpacity: Color.lerp(colorWithOpacity, other.colorWithOpacity, t));
+        colorWithOpacity: Color.lerp(colorWithOpacity, other.colorWithOpacity, t),
+        colorBottomNavigationRow:
+            Color.lerp(colorBottomNavigationRow, other.colorBottomNavigationRow, t));
   }
 }

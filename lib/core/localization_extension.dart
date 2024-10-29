@@ -56,6 +56,10 @@ extension LocalizationExtension on BuildContext {
 
   String get latest => AppLocalizations.of(this)!.latest;
 
+  String get trending => AppLocalizations.of(this)!.trending;
+
+  String get back => AppLocalizations.of(this)!.back;
+
   String get viewMore => AppLocalizations.of(this)!.viewMore;
 
   String get dateDiffFewSeconds => AppLocalizations.of(this)!.dateDiffFewSeconds;

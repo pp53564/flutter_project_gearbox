@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
-import 'package:gearbox/common/presentation/widget/CustomSnackBar.dart';
+import 'package:gearbox/common/presentation/widget/custom_snack_bar.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
 import 'package:gearbox/core/di.dart';

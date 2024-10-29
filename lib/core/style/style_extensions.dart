@@ -23,7 +23,12 @@ extension StyleExtension on BuildContext {
   Color get colorPaginationContainer =>
       Theme.of(this).extension<AppColors>()!.paginationContainerColor!;
 
+  Color get colorPlaceholder => Theme.of(this).extension<AppColors>()!.placeholderColor!;
+
   Color get colorWithOpacity => Theme.of(this).extension<AppColors>()!.colorWithOpacity!;
+
+  Color get colorBottomNavigationRow =>
+      Theme.of(this).extension<AppColors>()!.colorBottomNavigationRow!;
 
   TextStyle get textTitle => Theme.of(this).textTheme.title;
 

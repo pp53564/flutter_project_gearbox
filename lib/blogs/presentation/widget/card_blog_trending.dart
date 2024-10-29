@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class CardBlogInfo extends StatelessWidget {
+class CardBlogTrending extends StatelessWidget {
   final String textUrl;
   final DateTime dateTime;
   final int garageNumber;
   final String title;
   final String subtitle;
 
-  const CardBlogInfo(
+  const CardBlogTrending(
       {super.key,
       required this.textUrl,
       required this.dateTime,
@@ -43,10 +44,10 @@ class CardBlogInfo extends StatelessWidget {
                       color: context.colorPrimary,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                       child: Text(
-                        "Trending",
+                        context.trending,
                         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),

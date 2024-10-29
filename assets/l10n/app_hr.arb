@@ -81,5 +81,7 @@
         "type": "int"
       }
     }
-  }
+  },
+  "trending": "Popularno",
+  "back": "Natrag"
 }
