@@ -83,5 +83,7 @@
     }
   },
   "trending": "Popularno",
-  "back": "Natrag"
+  "back": "Natrag",
+  "comments": "Komentari",
+  "comment_placeholder": "Tvoj komentar..."
 }

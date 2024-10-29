@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/widget/card_blog_trending.dart';
 import 'package:gearbox/common/presentation/widget/card_blog.dart';
 import 'package:gearbox/core/localization_extension.dart';
+import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:gearbox/core/utils/utils_date.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -83,7 +84,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
                       maxHeight: 35,
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => _redirectToNotificationScreen(context),
                       padding: const EdgeInsets.all(3),
                       icon: const Icon(Icons.notifications_outlined, size: 20),
                     ),
@@ -145,4 +146,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
       )),
     );
   }
+
+  void _redirectToNotificationScreen(final BuildContext context) =>
+      Navigator.of(context).pushNamed(RouteGenerator.notificationScreen);
 }

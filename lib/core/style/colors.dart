@@ -12,7 +12,7 @@ const borderColorLight = Color(0XFF212526);
 const bottomNavigationIconColorLight = Color(0xFF007AFF);
 const paginationContainerColorLight = Color(0xFFBFBFBF);
 const colorWithOpacityLight = Color.fromARGB(112, 191, 191, 191);
-const colorBottomNavigationRowLight = Color(0x59DADADA);
+const colorBottomNavigationRowLight = Color(0x59E6E0E0);
 
 class AppColors extends ThemeExtension<AppColors> {
   final Color? backgroundColor;
