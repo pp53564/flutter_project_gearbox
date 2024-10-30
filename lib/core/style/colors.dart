@@ -9,6 +9,9 @@ const shadowColorLight = Color(0x26000000);
 const whiteColor = Color(0xFFFFFFFF);
 const placeholderColorLight = Color(0XFF898B8C);
 const borderColorLight = Color(0XFF212526);
+const bottomNavigationIconColorLight = Color(0xFF007AFF);
+const paginationContainerColorLight = Color(0xFFBFBFBF);
+const colorWithOpacityLight = Color.fromARGB(112, 191, 191, 191);
 
 class AppColors extends ThemeExtension<AppColors> {
   final Color? backgroundColor;
@@ -18,6 +21,9 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color? errorColor;
   final Color? placeholderColor;
   final Color? borderColor;
+  final Color? bottomNavigationIconColor;
+  final Color? paginationContainerColor;
+  final Color? colorWithOpacity;
 
   const AppColors({
     required this.backgroundColor,
@@ -27,6 +33,9 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.errorColor,
     required this.placeholderColor,
     required this.borderColor,
+    required this.bottomNavigationIconColor,
+    required this.paginationContainerColor,
+    required this.colorWithOpacity,
   });
 
   @override
@@ -47,11 +56,13 @@ class AppColors extends ThemeExtension<AppColors> {
         errorColor: errorColor ?? this.errorColor,
         placeholderColor: placeholderColor ?? this.placeholderColor,
         borderColor: borderColor ?? this.borderColor,
+        bottomNavigationIconColor: bottomNavigationIconColor ?? this.bottomNavigationIconColor,
+        paginationContainerColor: paginationContainerColor ?? this.paginationContainerColor,
+        colorWithOpacity: colorWithOpacity ?? this.colorWithOpacity,
       );
 
   @override
-  ThemeExtension<AppColors> lerp(
-      covariant ThemeExtension<AppColors>? other, double t) {
+  ThemeExtension<AppColors> lerp(covariant ThemeExtension<AppColors>? other, double t) {
     if (other is! AppColors) {
       return this;
     }
@@ -62,8 +73,12 @@ class AppColors extends ThemeExtension<AppColors> {
         primaryColor: Color.lerp(primaryColor, other.primaryColor, t),
         secondaryColor: Color.lerp(secondaryColor, other.secondaryColor, t),
         errorColor: Color.lerp(errorColor, other.errorColor, t),
-        placeholderColor:
-            Color.lerp(placeholderColor, other.placeholderColor, t),
-        borderColor: Color.lerp(borderColor, other.borderColor, t));
+        placeholderColor: Color.lerp(placeholderColor, other.placeholderColor, t),
+        borderColor: Color.lerp(borderColor, other.borderColor, t),
+        bottomNavigationIconColor:
+            Color.lerp(bottomNavigationIconColor, other.bottomNavigationIconColor, t),
+        paginationContainerColor:
+            Color.lerp(paginationContainerColor, other.paginationContainerColor, t),
+        colorWithOpacity: Color.lerp(colorWithOpacity, other.colorWithOpacity, t));
   }
 }

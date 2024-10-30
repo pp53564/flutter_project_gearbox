@@ -1,0 +1,87 @@
+{
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "emailHint": "Email",
+  "passwordHint": "Password",
+  "emailEmpty": "Email must not be empty",
+  "passwordEmpty": "Password must not be empty",
+  "signInTitle": "Welcome to the Gearbox!",
+  "signUpTitle": "Shift into the gear, sign up!",
+  "signInSubTitle": "Sign in to share your knowledge and passion for cars.",
+  "signUpSubTitle": "Join the community and fuel your love for cars",
+  "emailValidation": "Please enter valid email address",
+  "passwordMinLength": "Password is too short",
+  "dontHaveAccount": "Don’t have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "usernameHint": "Username",
+  "usernameEmpty": "Username must not be empty",
+  "passwordConfirmHint": "Confirm password",
+  "forgotPassword": "Forgot password?",
+  "blogs": "Blogs",
+  "explore": "Explore",
+  "newBottomNavigation": "New",
+  "saved": "Saved",
+  "garage": "Garage",
+  "userAlreadyExists": "User already exists",
+  "userIsNotFound": "User is not found",
+  "passwordsMustMatch": "Passwords must match",
+  "latest": "Latest",
+  "viewMore": "View more",
+  "dateDiffFewSeconds": "a few seconds",
+  "dateDiffMinute": "a min",
+  "dateDiffMinutes": "{diff} min",
+  "@dateDiffMinutes": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffHour": "an hour",
+  "dateDiffHours": "{diff} hours",
+  "@dateDiffHours": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffDay": "a day",
+  "dateDiffDays": "{diff} days",
+  "@dateDiffDays": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffWeek": "a week",
+  "dateDiffWeeks": "{diff} weeks",
+  "@dateDiffWeeks": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffMonth": "a month",
+  "dateDiffMonths": "{diff} months",
+  "@dateDiffMonths": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "dateDiffYear": "a year",
+  "dateDiffYears": "{diff} years",
+  "@dateDiffYears": {
+    "placeholders": {
+      "diff": {
+        "type": "int"
+      }
+    }
+  },
+  "chooseLanguage": "Choose a language"
+}
+

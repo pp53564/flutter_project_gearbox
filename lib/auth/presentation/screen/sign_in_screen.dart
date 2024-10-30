@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
-import 'package:gearbox/common/presentation/screen/home_screen.dart';
+import 'package:gearbox/common/presentation/widget/custom_snack_bar.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
-import 'package:gearbox/core/constants.dart';
+import 'package:gearbox/core/di.dart';
+import 'package:gearbox/core/failure.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatefulHookConsumerWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  final bool _isLoading = false;
-
+class _SignInScreenState extends ConsumerState<SignInScreen> {
   final form = FormGroup({
     'email': FormControl<String>(validators: [
       Validators.required,
@@ -31,6 +34,31 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = useState(false);
+    final authState = ref.watch(authNotifierProvider);
+
+    useValueChanged<AuthState, void>(authState, (_, __) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        switch (authState) {
+          case AuthStateLoading():
+            isLoading.value = true;
+            break;
+          case AuthStateSuccess():
+            isLoading.value = false;
+            Navigator.pushReplacementNamed(context, RouteGenerator.homeScreen);
+            break;
+          case AuthStateFailure(failure: final failure):
+            String message =
+                failure is UserIsNotFound ? context.userIsNotFound : failure.toString();
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => CustomSnackBar.show(context, message),
+            );
+            isLoading.value = false;
+            break;
+        }
+      });
+    });
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -40,36 +68,36 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                const TitleHeader(
-                  title: AppStrings.signInTitle,
-                  subtitle: AppStrings.signInSubTitle,
+                TitleHeader(
+                  title: context.signInTitle,
+                  subtitle: context.signInSubTitle,
                 ),
                 const SizedBox(height: 50),
                 CustomTextFormField(
                   formControlName: 'email',
-                  label: AppStrings.emailHint,
+                  label: context.emailHint,
                   validationMessages: {
-                    'required': (_) => AppStrings.emailEmpty,
-                    'email': (_) => AppStrings.emailValidation
+                    'required': (_) => context.emailEmpty,
+                    'email': (_) => context.emailValidation,
                   },
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
                   formControlName: 'password',
-                  label: AppStrings.passwordHint,
+                  label: context.passwordHint,
                   isPassword: true,
                   validationMessages: {
-                    'required': (_) => AppStrings.passwordEmpty,
-                    'minLength': (_) => AppStrings.passwordMinLength
+                    'required': (_) => context.passwordEmpty,
+                    'minLength': (_) => context.passwordMinLength,
                   },
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
                     onTap: _redirectToSingUpScreen,
-                    child: const Text(
-                      AppStrings.forgotPassword,
-                      style: TextStyle(color: Colors.black, fontSize: 12),
+                    child: Text(
+                      context.forgotPassword,
+                      style: const TextStyle(color: Colors.black, fontSize: 12),
                     ),
                   ),
                 ),
@@ -78,8 +106,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   key: const Key('submit'),
                   builder: (context, form, _) => PrimaryButton(
                     onPressed: () => _login(context, form),
-                    text: AppStrings.signIn,
-                    isLoading: _isLoading,
+                    text: context.signIn,
+                    isLoading: isLoading.value,
                   ),
                 ),
                 const Spacer(),
@@ -89,13 +117,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        AppStrings.dontHaveAccount,
+                        context.dontHaveAccount,
                         style: context.textDescriptionAuth,
                       ),
                       const SizedBox(width: 5),
                       GestureDetector(
                         onTap: _redirectToSingUpScreen,
-                        child: Text(AppStrings.signUp, style: context.textLink),
+                        child: Text(context.signUp, style: context.textLink),
                       ),
                     ],
                   ),
@@ -109,12 +137,11 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  void _login(final BuildContext context, final FormGroup form) {
-    print(form.value);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+  Future<void> _login(final BuildContext context, final FormGroup form) async {
+    final email = form.control('email').value;
+    final password = form.control('password').value;
+    await ref.read(authNotifierProvider.notifier).signIn(email, password);
   }
 
-  void _redirectToSingUpScreen() =>
-      Navigator.of(context).pushNamed(RouteGenerator.signUpScreen);
+  void _redirectToSingUpScreen() => Navigator.of(context).pushNamed(RouteGenerator.signUpScreen);
 }
