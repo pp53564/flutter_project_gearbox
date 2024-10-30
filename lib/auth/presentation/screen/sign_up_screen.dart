@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
-import 'package:gearbox/common/presentation/widget/CustomSnackBar.dart';
+import 'package:gearbox/common/presentation/widget/custom_snack_bar.dart';
 import 'package:gearbox/common/presentation/widget/primary_button.dart';
 import 'package:gearbox/common/presentation/widget/title_header.dart';
 import 'package:gearbox/core/di.dart';
@@ -34,12 +34,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         Validators.required,
         Validators.minLength(8),
       ]),
-      'confirm_password': FormControl<String>(
-        validators: [
-          Validators.required,
-          Validators.minLength(8),
-        ],
-      ),
+      'confirm_password': FormControl<String>(validators: [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
     },
     validators: [
       Validators.mustMatch('password', 'confirm_password'),
@@ -50,6 +48,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   Widget build(BuildContext context) {
     final isLoading = useState(false);
     final authState = ref.watch(authNotifierProvider);
+
     useValueChanged<AuthState, void>(authState, (_, __) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         switch (authState) {
@@ -71,6 +70,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         }
       });
     });
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -91,7 +91,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   label: context.emailHint,
                   validationMessages: {
                     'required': (_) => context.emailEmpty,
-                    'email': (_) => context.emailValidation
+                    'email': (_) => context.emailValidation,
                   },
                 ),
                 const SizedBox(height: 20),
@@ -107,7 +107,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   isPassword: true,
                   validationMessages: {
                     'required': (_) => context.passwordEmpty,
-                    'minLength': (_) => context.passwordMinLength
+                    'minLength': (_) => context.passwordMinLength,
                   },
                 ),
                 const SizedBox(height: 20),
@@ -118,7 +118,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   validationMessages: {
                     'required': (_) => context.passwordEmpty,
                     'minLength': (_) => context.passwordMinLength,
-                    'mustMatch': (_) => context.passwordsMustMatch
+                    'mustMatch': (_) => context.passwordsMustMatch,
                   },
                 ),
                 const SizedBox(height: 20),

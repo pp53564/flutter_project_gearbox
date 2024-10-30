@@ -24,6 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   smooth_page_indicator: ^1.2.0+3
   timeago: ^3.7.0
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:
