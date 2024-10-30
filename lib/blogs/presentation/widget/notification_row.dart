@@ -3,37 +3,49 @@ import 'package:gearbox/core/style/style_extensions.dart';
 
 class NotificationRow extends StatelessWidget {
   final String avatarUrl;
+  final String text;
+  final String username;
+  final String imageBlogUrl;
 
-  const NotificationRow({super.key, required this.avatarUrl});
+  const NotificationRow(
+      {super.key,
+      required this.avatarUrl,
+      required this.text,
+      required this.username,
+      required this.imageBlogUrl});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Row(
         children: [
           CircleAvatar(
             radius: 25,
             backgroundImage: AssetImage(avatarUrl),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 2),
                 Text(
-                  "@theresawalter",
+                  username,
                   style: context.textDescriptionAuth,
                 ),
                 Text(
-                  "liked your blog.",
+                  text,
                   style: context.textPlaceholder,
                   textAlign: TextAlign.justify,
                 ),
               ],
             ),
+          ),
+          Image.asset(
+            imageBlogUrl,
+            height: 45,
+            width: 45,
           ),
         ],
       ),

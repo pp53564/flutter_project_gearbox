@@ -85,5 +85,6 @@
   "trending": "Popularno",
   "back": "Natrag",
   "comments": "Komentari",
-  "comment_placeholder": "Tvoj komentar..."
+  "comment_placeholder": "Tvoj komentar...",
+  "notifications": "Obavijesti"
 }

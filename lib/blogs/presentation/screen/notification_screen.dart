@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/widget/notification_row.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -8,34 +9,34 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final notifications = [
-      NotificationRow(
+      const NotificationRow(
         avatarUrl: 'assets/images/profile_picture.png',
+        username: '@theresawalter',
+        text: 'liked your blog.',
+        imageBlogUrl: 'assets/images/car4.png',
       ),
-      NotificationRow(
+      const NotificationRow(
         avatarUrl: 'assets/images/profile_picture3.png',
+        username: '@tomtainor',
+        text: 'liked your blog.',
+        imageBlogUrl: 'assets/images/car4.png',
       ),
-      NotificationRow(
+      const NotificationRow(
         avatarUrl: 'assets/images/profile_picture3.png',
-      ),
-      NotificationRow(
-        avatarUrl: 'assets/images/profile_picture3.png',
-      ),
-      NotificationRow(
-        avatarUrl: 'assets/images/profile_picture3.png',
-      ),
-      NotificationRow(
-        avatarUrl: 'assets/images/profile_picture3.png',
+        username: '@tomtainor',
+        text: 'commented on your blog.',
+        imageBlogUrl: 'assets/images/car4.png',
       ),
     ];
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Notifications',
+                context.notifications,
                 style: context.textTitle,
               ),
               const SizedBox(height: 5),

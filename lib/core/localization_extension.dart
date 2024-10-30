@@ -64,6 +64,8 @@ extension LocalizationExtension on BuildContext {
 
   String get commentPlaceholder => AppLocalizations.of(this)!.comment_placeholder;
 
+  String get notifications => AppLocalizations.of(this)!.notifications;
+
   String get viewMore => AppLocalizations.of(this)!.viewMore;
 
   String get dateDiffFewSeconds => AppLocalizations.of(this)!.dateDiffFewSeconds;
