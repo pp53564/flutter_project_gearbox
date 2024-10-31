@@ -82,6 +82,11 @@
       }
     }
   },
-  "chooseLanguage": "Choose a language"
+  "chooseLanguage": "Choose a language",
+  "trending": "Trending",
+  "back": "Back",
+  "comments": "Comments",
+  "comment_placeholder": "Your comment...",
+  "notifications": "Notifications"
 }
 

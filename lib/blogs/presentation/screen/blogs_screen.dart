@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/blogs/presentation/widget/card_blog_info.dart';
+import 'package:gearbox/blogs/presentation/widget/card_blog_trending.dart';
 import 'package:gearbox/common/presentation/widget/card_blog.dart';
 import 'package:gearbox/core/localization_extension.dart';
+import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:gearbox/core/utils/utils_date.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -14,11 +15,10 @@ class BlogsScreen extends StatefulWidget {
 }
 
 class _BlogsScreenState extends State<BlogsScreen> {
-  final controller = PageController(viewportFraction: 0.9, keepPage: true);
-
+  final controller = PageController(viewportFraction: 0.8, keepPage: true);
   final pages = List.generate(
       3,
-      (index) => CardBlogInfo(
+      (index) => CardBlogTrending(
           textUrl: 'assets/images/car.png',
           garageNumber: 69,
           dateTime: DateTime.now().subtract(const Duration(minutes: 35)),
@@ -27,21 +27,21 @@ class _BlogsScreenState extends State<BlogsScreen> {
 
   final blogList = [
     CardBlog(
-      subtitle: 'Technology',
+      type: 'Technology',
       title: 'Next generation Apple Car Play integration started',
-      imageUrl: 'assets/images/laptop.png',
-      dateTime: DateTime.now().subtract(const Duration(days: 5)),
+      imageUrl: 'assets/images/screen.png',
+      dateTime: DateTime.now().add(const Duration(days: -5)),
       garageNumber: 11,
     ),
     CardBlog(
-      subtitle: 'Technology',
+      type: 'Hot new',
       title: 'Next generation Apple Car Play integration started',
       imageUrl: 'assets/images/car2.png',
       dateTime: DateTime.now().add(const Duration(minutes: -30)),
       garageNumber: 11,
     ),
     CardBlog(
-      subtitle: 'Technology',
+      type: 'Electric cars',
       title: 'Next generation Apple Car Play integration started',
       imageUrl: 'assets/images/car3.png',
       dateTime: DateTime.now().add(const Duration(minutes: -30)),
@@ -85,7 +85,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
                       maxHeight: 35,
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => _redirectToNotificationScreen(context),
                       padding: const EdgeInsets.all(3),
                       icon: const Icon(Icons.notifications_outlined, size: 20),
                     ),
@@ -139,4 +139,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
       )),
     );
   }
+
+  void _redirectToNotificationScreen(final BuildContext context) =>
+      Navigator.of(context).pushNamed(RouteGenerator.notificationScreen);
 }
