@@ -22,7 +22,12 @@ class AuthNotifier extends Notifier<AuthState> {
     );
   }
 
-  void signUp({required email, required username, required password, confirmPassword}) async {
+  void signUp({
+    required String email,
+    required String username,
+    required String password,
+    required String confirmPassword,
+  }) async {
     state = AuthStateLoading();
     final result = await usecase.signUp(email, username, password, confirmPassword);
 

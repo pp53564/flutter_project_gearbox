@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/screen/blogs_screen.dart';
-import 'package:gearbox/blogs/presentation/screen/settings_screen.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
+import 'package:gearbox/settings/presentation/screen/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,9 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index) => setState(() => _selectedScreenIndex = index),
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.article_outlined,
-            ),
+            icon: const Icon(Icons.article_outlined),
             label: context.blogs,
             activeIcon: Icon(
               Icons.article,

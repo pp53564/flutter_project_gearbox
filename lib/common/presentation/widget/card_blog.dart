@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
-import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class CardBlog extends StatelessWidget {
@@ -52,7 +51,7 @@ class CardBlog extends StatelessWidget {
                 ),
                 const SizedBox(width: 20),
                 ConstrainedBox(
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxHeight: 80,
                     maxWidth: 86,
                   ),

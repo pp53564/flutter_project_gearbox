@@ -26,10 +26,18 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, User>> signUp(
-      String email, String username, String password, String confirmPassword) async {
+    String email,
+    String username,
+    String password,
+    String confirmPassword,
+  ) async {
     try {
       final request = AuthRequest(
-          email: email, username: username, password: password, confirmPassword: confirmPassword);
+        email: email,
+        username: username,
+        password: password,
+        confirmPassword: confirmPassword,
+      );
       final response = await _authApi.signUp(request);
       return Right(response);
     } on DioException catch (error) {

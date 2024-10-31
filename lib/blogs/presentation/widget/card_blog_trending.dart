@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
-import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class CardBlogTrending extends StatelessWidget {
@@ -20,7 +19,12 @@ class CardBlogTrending extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return
+      ConstrainedBox(
+        constraints: BoxConstraints(
+        maxWidth: 350,
+    ),
+      Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),

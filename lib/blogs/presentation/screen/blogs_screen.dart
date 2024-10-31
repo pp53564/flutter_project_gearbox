@@ -52,6 +52,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
   @override
   Widget build(BuildContext context) {
     Locale locale = Localizations.localeOf(context);
+
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -84,7 +85,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
                       maxHeight: 35,
                     ),
                     child: IconButton(
-                      onPressed: () => _redirectToNotificationScreen(context),
+                      onPressed: () {},
                       padding: const EdgeInsets.all(3),
                       icon: const Icon(Icons.notifications_outlined, size: 20),
                     ),
@@ -92,14 +93,15 @@ class _BlogsScreenState extends State<BlogsScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              AspectRatio(
-                aspectRatio: 12 / 10,
-                child: PageView.builder(
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxHeight: 300,
+                ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
                   controller: controller,
                   itemCount: pages.length,
-                  itemBuilder: (_, index) {
-                    return pages[index % pages.length];
-                  },
+                  itemBuilder: (_, index) => pages[index % pages.length],
                 ),
               ),
               const SizedBox(height: 10),
@@ -125,18 +127,9 @@ class _BlogsScreenState extends State<BlogsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(context.latest, style: context.textCardBlogTitle),
-                  Text(context.viewMore, style: context.textLinkThin)
+                  Text(context.viewMore, style: context.textLinkThin),
                 ],
               ),
-              // Expanded(
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.vertical,
-              //     itemBuilder: (_, index) {
-              //       return blogList[index % blogList.length];
-              //     },
-              //     itemCount: blogList.length,
-              //   ),
-              // ),
               Column(
                 children: blogList.map((blog) => blog).toList(),
               ),

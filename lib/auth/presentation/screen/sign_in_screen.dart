@@ -36,6 +36,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   Widget build(BuildContext context) {
     final isLoading = useState(false);
     final authState = ref.watch(authNotifierProvider);
+
     useValueChanged<AuthState, void>(authState, (_, __) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         switch (authState) {
@@ -57,6 +58,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         }
       });
     });
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -76,7 +78,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   label: context.emailHint,
                   validationMessages: {
                     'required': (_) => context.emailEmpty,
-                    'email': (_) => context.emailValidation
+                    'email': (_) => context.emailValidation,
                   },
                 ),
                 const SizedBox(height: 20),
@@ -86,7 +88,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   isPassword: true,
                   validationMessages: {
                     'required': (_) => context.passwordEmpty,
-                    'minLength': (_) => context.passwordMinLength
+                    'minLength': (_) => context.passwordMinLength,
                   },
                 ),
                 Align(

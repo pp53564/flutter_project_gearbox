@@ -27,9 +27,9 @@
   "passwordsMustMatch": "Lozinke moraju biti iste",
   "latest": "Najnoviji",
   "viewMore": "vidi više",
-  "dateDiffFewSeconds": "prije nekoliko sekundi",
-  "dateDiffMinute": "prije minutu",
-  "dateDiffMinutes": "prije {diff} minuta",
+  "dateDiffFewSeconds": "nekoliko sekundi",
+  "dateDiffMinute": "min",
+  "dateDiffMinutes": "{diff} min",
   "@dateDiffMinutes": {
     "placeholders": {
       "diff": {
@@ -37,8 +37,8 @@
       }
     }
   },
-  "dateDiffHour": "prije sat vremena",
-  "dateDiffHours": "prije {diff} sati",
+  "dateDiffHour": "sat vremena",
+  "dateDiffHours": "{diff} sati",
   "@dateDiffHours": {
     "placeholders": {
       "diff": {
@@ -46,8 +46,8 @@
       }
     }
   },
-  "dateDiffDay": "prije dan",
-  "dateDiffDays": "prije {diff} dana",
+  "dateDiffDay": "dan",
+  "dateDiffDays": "{diff} dana",
   "@dateDiffDays": {
     "placeholders": {
       "diff": {
@@ -55,8 +55,8 @@
       }
     }
   },
-  "dateDiffWeek": "prije tjedan dana",
-  "dateDiffWeeks": "prije {diff} tjedana",
+  "dateDiffWeek": "tjedan dana",
+  "dateDiffWeeks": "{diff} tjedana",
   "@dateDiffWeeks": {
     "placeholders": {
       "diff": {
@@ -64,8 +64,8 @@
       }
     }
   },
-  "dateDiffMonth": "prije mjesec dana",
-  "dateDiffMonths": "prije {diff} mjeseci",
+  "dateDiffMonth": "mjesec dana",
+  "dateDiffMonths": "{diff} mjeseci",
   "@dateDiffMonths": {
     "placeholders": {
       "diff": {
@@ -73,8 +73,8 @@
       }
     }
   },
-  "dateDiffYear": "prije godinu dana",
-  "dateDiffYears": "prije {diff} godina",
+  "dateDiffYear": "godina dana",
+  "dateDiffYears": "{diff} godina",
   "@dateDiffYears": {
     "placeholders": {
       "diff": {
@@ -82,6 +82,7 @@
       }
     }
   },
+  "chooseLanguage": "Izaberi jezik",
   "trending": "Popularno",
   "back": "Natrag",
   "comments": "Komentari",

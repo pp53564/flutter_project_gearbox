@@ -68,13 +68,13 @@ extension LocalizationExtension on BuildContext {
 
   String get viewMore => AppLocalizations.of(this)!.viewMore;
 
+  String get chooseLanguage => AppLocalizations.of(this)!.chooseLanguage;
+
   String get dateDiffFewSeconds => AppLocalizations.of(this)!.dateDiffFewSeconds;
 
   String get dateDiffMinute => AppLocalizations.of(this)!.dateDiffMinute;
 
-  String dateDiffMinutes(int diff) {
-    return AppLocalizations.of(this)!.dateDiffMinutes(diff);
-  }
+  String dateDiffMinutes(int diff) => AppLocalizations.of(this)!.dateDiffMinutes(diff);
 
   String get dateDiffHour => AppLocalizations.of(this)!.dateDiffHour;
 
@@ -82,17 +82,17 @@ extension LocalizationExtension on BuildContext {
 
   String get dateDiffDay => AppLocalizations.of(this)!.dateDiffDay;
 
-  String dateDiffDays(int diff) => AppLocalizations.of(this)!.dateDiffDay;
+  String dateDiffDays(int diff) => AppLocalizations.of(this)!.dateDiffDays(diff);
 
   String get dateDiffWeek => AppLocalizations.of(this)!.dateDiffWeek;
 
-  String dateDiffWeeks(int diff) => AppLocalizations.of(this)!.dateDiffWeek;
+  String dateDiffWeeks(int diff) => AppLocalizations.of(this)!.dateDiffWeeks(diff);
 
   String get dateDiffMonth => AppLocalizations.of(this)!.dateDiffMonth;
 
-  String dateDiffMonths(int diff) => AppLocalizations.of(this)!.dateDiffMonth;
+  String dateDiffMonths(int diff) => AppLocalizations.of(this)!.dateDiffMonths(diff);
 
   String get dateDiffYear => AppLocalizations.of(this)!.dateDiffYear;
 
-  String dateDiffYears(int diff) => AppLocalizations.of(this)!.dateDiffYear;
+  String dateDiffYears(int diff) => AppLocalizations.of(this)!.dateDiffYears(diff);
 }
