@@ -9,7 +9,7 @@ class BlogDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String textBlog =
+    const String textBlog =
         "Next-generation CarPlay will have deeper integration with a vehicle's instrument cluster, climate controls, FM radio, and more.It will also support multiple displays across the dashboard, and offer a variety of personalization options.\n\n"
         "Aston Martin and Porsche previewed their customized next-generation CarPlay designs in December. Aston Martin said it would release its first vehicles with next-generation CarPlay support in 2024, including a new model of its high-end DB12 sports car. Porsche did not provide a timeframe or specific details about its own plans.\n\n"
         "A spokesperson for Porsche this week told us that it has no update to provide about next-generation CarPlay availability at this time, while a spokesperson for Aston Martin has yet to respond to our request for comment.\n\n"
@@ -31,7 +31,7 @@ class BlogDetailsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                AvatarRow(
+                const AvatarRow(
                   username: '@brunobenner',
                   avatarUrl: 'assets/images/avatar.png',
                 ),
@@ -74,7 +74,7 @@ class BlogDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: BottomSheetWithButtons(),
+      bottomSheet: const BottomSheetWithButtons(),
     );
   }
 }

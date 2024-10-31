@@ -85,7 +85,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
                       maxHeight: 35,
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => _redirectToNotificationScreen(context),
                       padding: const EdgeInsets.all(3),
                       icon: const Icon(Icons.notifications_outlined, size: 20),
                     ),

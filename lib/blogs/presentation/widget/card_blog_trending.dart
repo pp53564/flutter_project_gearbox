@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class CardBlogTrending extends StatelessWidget {
@@ -19,57 +20,62 @@ class CardBlogTrending extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      ConstrainedBox(
-        constraints: BoxConstraints(
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
         maxWidth: 350,
-    ),
-      Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
       ),
-      color: context.colorBackground,
-      elevation: 2,
-      child: Container(
-        alignment: Alignment.topCenter,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                // Image
-                Image.asset(textUrl, fit: BoxFit.cover),
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: context.colorPrimary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                      child: Text(
-                        context.trending,
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        color: context.colorBackground,
+        elevation: 2,
+        child: Container(
+          alignment: Alignment.topCenter,
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  Image.asset(textUrl, fit: BoxFit.cover),
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: context.colorPrimary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                        child: Text(
+                          context.trending,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Text(title, style: context.textTitleCard),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(subtitle, style: context.textSmallThings),
-                BlogInfoRow(dateTime: dateTime, garageNumber: garageNumber),
-              ],
-            ),
-          ],
+                ],
+              ),
+              const SizedBox(height: 5),
+              Text(title, style: context.textTitleCard),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(subtitle, style: context.textSmallThings),
+                  BlogInfoRow(
+                    dateTime: dateTime,
+                    garageNumber: garageNumber,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

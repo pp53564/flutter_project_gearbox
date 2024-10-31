@@ -11,7 +11,7 @@ class BottomSheetComments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final comments = [
+    const comments = [
       AvatarRow(
         avatarUrl: 'assets/images/profile_picture2.png',
         username: '@hansmuliner',
@@ -27,19 +27,8 @@ class BottomSheetComments extends StatelessWidget {
           avatarUrl: 'assets/images/profile_picture4.png',
           username: '@theresawalter',
           comment: 'I just hope that the dashboard won’t be locked by brand.'),
-      // AvatarRow(
-      //     avatarUrl: 'assets/images/profile_picture4.png',
-      //     username: '@theresawalter',
-      //     comment: 'I just hope that the dashboard won’t be locked by brand.'),
-      // AvatarRow(
-      //     avatarUrl: 'assets/images/profile_picture4.png',
-      //     username: '@theresawalter',
-      //     comment: 'I just hope that the dashboard won’t be locked by brand.'),
-      // AvatarRow(
-      //     avatarUrl: 'assets/images/profile_picture4.png',
-      //     username: '@theresawalter',
-      //     comment: 'I just hope that the dashboard won’t be locked by brand.'),
     ];
+
     return Padding(
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -79,7 +68,7 @@ class BottomSheetComments extends StatelessWidget {
                   ),
                 ),
                 const Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: Row(
                     children: [
                       CircleAvatar(

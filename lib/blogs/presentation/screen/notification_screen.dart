@@ -28,6 +28,7 @@ class NotificationScreen extends StatelessWidget {
         imageBlogUrl: 'assets/images/car4.png',
       ),
     ];
+
     return Scaffold(
       body: SafeArea(
         child: Padding(

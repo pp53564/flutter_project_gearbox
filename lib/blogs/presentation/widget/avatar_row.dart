@@ -32,7 +32,7 @@ class AvatarRow extends StatelessWidget {
               ),
               if (comment != null)
                 Padding(
-                  padding: EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.only(right: 20),
                   child: Text(
                     comment!,
                     style: context.textDescription,
