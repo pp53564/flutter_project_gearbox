@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_api.dart';
+part of 'blog_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,13 +8,13 @@ part of 'auth_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _AuthApi implements AuthApi {
-  _AuthApi(
+class _BlogApi implements BlogApi {
+  _BlogApi(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'http://10.0.2.2:8080/api/auth';
+    baseUrl ??= 'http://10.0.2.2:8080/api/blog';
   }
 
   final Dio _dio;
@@ -24,20 +24,22 @@ class _AuthApi implements AuthApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<User> signIn(AuthRequest request) async {
+  Future<PaginatedResponse> getTrendingBlogs(
+    int page,
+    int size,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _options = _setStreamType<User>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PaginatedResponse>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/signIn',
+          '/trending/${page}/${size}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -47,9 +49,9 @@ class _AuthApi implements AuthApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late User _value;
+    late PaginatedResponse _value;
     try {
-      _value = User.fromJson(_result.data!);
+      _value = PaginatedResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -58,20 +60,22 @@ class _AuthApi implements AuthApi {
   }
 
   @override
-  Future<User> signUp(AuthRequest request) async {
+  Future<PaginatedResponse> getLatestBlogs(
+    int page,
+    int size,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _options = _setStreamType<User>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PaginatedResponse>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/signUp',
+          '/latest/${page}/${size}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -81,9 +85,9 @@ class _AuthApi implements AuthApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late User _value;
+    late PaginatedResponse _value;
     try {
-      _value = User.fromJson(_result.data!);
+      _value = PaginatedResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

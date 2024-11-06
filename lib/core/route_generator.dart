@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gearbox/auth/presentation/screen/sign_in_screen.dart';
 import 'package:gearbox/auth/presentation/screen/sign_up_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_details_screen.dart';
+import 'package:gearbox/blogs/presentation/screen/blog_list_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blogs_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/notification_screen.dart';
 import 'package:gearbox/common/presentation/screen/home_screen.dart';
@@ -13,6 +14,7 @@ class RouteGenerator {
   static const String blogsScreen = '/blogs';
   static const String blogDetailsScreen = '/details';
   static const String notificationScreen = '/notifications';
+  static const String blogListScreen = '/allBlogs';
 
   RouteGenerator._();
 
@@ -30,6 +32,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BlogDetailsScreen());
       case RouteGenerator.notificationScreen:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
+      case RouteGenerator.blogListScreen:
+        return MaterialPageRoute(builder: (_) => const BlogListScreen());
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
     }

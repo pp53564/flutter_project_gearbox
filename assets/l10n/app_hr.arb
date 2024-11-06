@@ -87,5 +87,13 @@
   "back": "Natrag",
   "comments": "Komentari",
   "comment_placeholder": "Tvoj komentar...",
-  "notifications": "Obavijesti"
+  "notifications": "Obavijesti",
+  "thereWasAnError": "Došlo je do greške",
+  "categoryType": "{categoryType, select, TECHNOLOGY{TEHNOLOGIJA} HOT_NEWS{AKTUALNO} ELECTRIC_CARS{ELEKTRIČNI AUTI} EXOTIC{EGZOTIČNO} OLDTIMER{KLASICI} other{DRUGO}}",
+  "@categoryType": {
+    "description": "Category type",
+    "placeholders": {
+      "categoryType": {}
+    }
+  }
 }

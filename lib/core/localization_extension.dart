@@ -70,6 +70,8 @@ extension LocalizationExtension on BuildContext {
 
   String get chooseLanguage => AppLocalizations.of(this)!.chooseLanguage;
 
+  String get thereWasAnError => AppLocalizations.of(this)!.thereWasAnError;
+
   String get dateDiffFewSeconds => AppLocalizations.of(this)!.dateDiffFewSeconds;
 
   String get dateDiffMinute => AppLocalizations.of(this)!.dateDiffMinute;
@@ -95,4 +97,6 @@ extension LocalizationExtension on BuildContext {
   String get dateDiffYear => AppLocalizations.of(this)!.dateDiffYear;
 
   String dateDiffYears(int diff) => AppLocalizations.of(this)!.dateDiffYears(diff);
+
+  String categoryType(String categoryType) => AppLocalizations.of(this)!.categoryType(categoryType);
 }

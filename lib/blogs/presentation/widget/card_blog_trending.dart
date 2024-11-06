@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gearbox/blogs/domain/entity/blog.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class CardBlogTrending extends StatelessWidget {
-  final String textUrl;
-  final DateTime dateTime;
-  final int garageNumber;
-  final String title;
-  final String subtitle;
+  final Blog blog;
 
-  const CardBlogTrending(
-      {super.key,
-      required this.textUrl,
-      required this.dateTime,
-      required this.garageNumber,
-      required this.title,
-      required this.subtitle});
+  const CardBlogTrending({
+    super.key,
+    required this.blog,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +32,15 @@ class CardBlogTrending extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Image.asset(textUrl, fit: BoxFit.cover),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image(
+                      image: NetworkImage(blog.thumbnailImageUrl),
+                      width: 330,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   Positioned(
                     top: 10,
                     left: 10,
@@ -62,15 +64,20 @@ class CardBlogTrending extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 5),
-              Text(title, style: context.textTitleCard),
-              const SizedBox(height: 20),
+              Text(
+                blog.title,
+                style: context.textTitleCard,
+                overflow: TextOverflow.ellipsis,
+              ),
+              // const SizedBox(height: 20),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(subtitle, style: context.textSmallThings),
+                  Text(blog.category.formattedEnum, style: context.textSmallThings),
                   BlogInfoRow(
-                    dateTime: dateTime,
-                    garageNumber: garageNumber,
+                    dateTime: blog.createDate,
+                    numberOfLikes: blog.numberOfLikes,
                   ),
                 ],
               ),

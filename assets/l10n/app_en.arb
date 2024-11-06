@@ -87,6 +87,14 @@
   "back": "Back",
   "comments": "Comments",
   "comment_placeholder": "Your comment...",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+  "thereWasAnError": "There was an error",
+  "categoryType": "{categoryType, select, TECHNOLOGY{TECHNOLOGY} HOT_NEWS{HOT NEWS} ELECTRIC_CARS{ELECTRIC CARS} EXOTIC{EXOTIC} OLDTIMER{OLDTIMER} other{OTHER}}",
+  "@categoryType": {
+    "description": "Category type",
+    "placeholders": {
+      "categoryType": {}
+    }
+  }
 }
 

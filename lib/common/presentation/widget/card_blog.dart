@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gearbox/blogs/domain/entity/blog.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class CardBlog extends StatelessWidget {
-  final String type;
-  final String title;
-  final String imageUrl;
-  final DateTime dateTime;
-  final int garageNumber;
+  final Blog blog;
 
-  const CardBlog(
-      {super.key,
-      required this.type,
-      required this.title,
-      required this.imageUrl,
-      required this.dateTime,
-      required this.garageNumber});
+  const CardBlog({super.key, required this.blog});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +22,7 @@ class CardBlog extends StatelessWidget {
         elevation: 2,
         child: Container(
           padding: const EdgeInsets.all(10),
+          height: 130,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,27 +31,37 @@ class CardBlog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(type, style: context.textSmallThings),
+                    Text(context.categoryType(blog.category.name), style: context.textSmallThings),
                     const SizedBox(height: 8),
-                    Text(title, style: context.textTitleCardList),
-                    const SizedBox(height: 8),
+                    Text(
+                      blog.title,
+                      style: context.textTitleCardList,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
+                    // const SizedBox(height: 8),
+                    const Spacer(),
                     BlogInfoRow(
-                      garageNumber: garageNumber,
-                      dateTime: dateTime,
+                      numberOfLikes: blog.numberOfLikes,
+                      dateTime: blog.createDate,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 20),
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 80,
-                  maxWidth: 86,
-                ),
-                child: Image.asset(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image(
+                      image: NetworkImage(blog.thumbnailImageUrl),
+                      width: 120,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -5,9 +5,9 @@ import 'package:gearbox/core/utils/utils_date.dart';
 
 class BlogInfoRow extends StatelessWidget {
   final DateTime dateTime;
-  final int garageNumber;
+  final int numberOfLikes;
 
-  const BlogInfoRow({super.key, required this.dateTime, required this.garageNumber});
+  const BlogInfoRow({super.key, required this.dateTime, required this.numberOfLikes});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class BlogInfoRow extends StatelessWidget {
               ),
               const SizedBox(width: 2),
               Text(timeToShow, style: context.textSmallThings),
-              const SizedBox(width: 22),
+              const SizedBox(width: 10),
             ],
           ),
         const Icon(
@@ -35,7 +35,7 @@ class BlogInfoRow extends StatelessWidget {
           size: 16,
         ),
         const SizedBox(width: 2),
-        Text(garageNumber.toString(), style: context.textSmallThings),
+        Text(numberOfLikes.toString(), style: context.textSmallThings),
       ],
     );
   }
