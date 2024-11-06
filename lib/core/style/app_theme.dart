@@ -23,7 +23,8 @@ class AppTheme {
           borderColor: borderColorLight,
           bottomNavigationIconColor: bottomNavigationIconColorLight,
           paginationContainerColor: paginationContainerColorLight,
-          colorWithOpacity: colorWithOpacityLight,
+          bottomNavigationRow: bottomNavigationRowLight,
+          pageIndicatorBackground: pageIndicatorBackgroundLight,
         )
       ]);
 }

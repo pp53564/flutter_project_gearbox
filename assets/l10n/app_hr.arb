@@ -73,7 +73,7 @@
       }
     }
   },
-  "dateDiffYear": "godinu dana",
+  "dateDiffYear": "godina dana",
   "dateDiffYears": "{diff} godina",
   "@dateDiffYears": {
     "placeholders": {
@@ -82,5 +82,10 @@
       }
     }
   },
-  "chooseLanguage": "Izaberi jezik"
+  "chooseLanguage": "Izaberi jezik",
+  "trending": "Popularno",
+  "back": "Natrag",
+  "comments": "Komentari",
+  "comment_placeholder": "Tvoj komentar...",
+  "notifications": "Obavijesti"
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
-import 'package:gearbox/auth/presentation/widget/custom_text_form_field.dart';
-import 'package:gearbox/common/presentation/widget/custom_snack_bar.dart';
-import 'package:gearbox/common/presentation/widget/primary_button.dart';
-import 'package:gearbox/common/presentation/widget/title_header.dart';
+import 'package:gearbox/auth/presentation/widget/gearbox_text_form_field.dart';
+import 'package:gearbox/common/presentation/widget/gearbox_snack_bar.dart';
+import 'package:gearbox/common/presentation/widget/button/gearbox_primary_button.dart';
+import 'package:gearbox/auth/presentation/widget/title_header.dart';
 import 'package:gearbox/core/di.dart';
 import 'package:gearbox/core/failure.dart';
 import 'package:gearbox/core/localization_extension.dart';
@@ -51,7 +51,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             String message =
                 failure is UserIsNotFound ? context.userIsNotFound : failure.toString();
             WidgetsBinding.instance.addPostFrameCallback(
-              (_) => CustomSnackBar.show(context, message),
+              (_) => GearboxSnackBar.show(context, message),
             );
             isLoading.value = false;
             break;
@@ -73,7 +73,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   subtitle: context.signInSubTitle,
                 ),
                 const SizedBox(height: 50),
-                CustomTextFormField(
+                GearboxTextFormField(
                   formControlName: 'email',
                   label: context.emailHint,
                   validationMessages: {
@@ -82,7 +82,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   },
                 ),
                 const SizedBox(height: 20),
-                CustomTextFormField(
+                GearboxTextFormField(
                   formControlName: 'password',
                   label: context.passwordHint,
                   isPassword: true,
@@ -104,7 +104,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 const SizedBox(height: 20),
                 ReactiveFormConsumer(
                   key: const Key('submit'),
-                  builder: (context, form, _) => PrimaryButton(
+                  builder: (context, form, _) => GearboxPrimaryButton(
                     onPressed: () => _login(context, form),
                     text: context.signIn,
                     isLoading: isLoading.value,
