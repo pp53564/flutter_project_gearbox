@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/domain/entity/blog.dart';
 import 'package:gearbox/blogs/presentation/controller/blog_list_pagination_notifier.dart';
 import 'package:gearbox/blogs/presentation/widget/loading/loading_blog_list_shimmer.dart';
-import 'package:gearbox/common/presentation/widget/card_blog.dart';
+import 'package:gearbox/common/presentation/widget/blog_card.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:riverpod_infinite_scroll/riverpod_infinite_scroll.dart';
 
@@ -27,7 +27,7 @@ class BlogListScreen extends StatelessWidget {
         firstPageKey: 0,
         limit: 6,
         provider: blogListPaginationProvider,
-        itemBuilder: (context, blog, index) => CardBlog(blog: blog),
+        itemBuilder: (context, blog, index) => BlogCard(blog: blog),
         firstPageProgressIndicatorBuilder: (context, controller) => const LoadingBlogListShimmer(),
         newPageProgressIndicatorBuilder: (context, controller) => const CircularProgressIndicator(),
         pagedBuilder: (controller, builder) => PagedListView(

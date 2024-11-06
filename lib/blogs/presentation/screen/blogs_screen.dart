@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/controller/state/blog_state.dart';
-import 'package:gearbox/blogs/presentation/widget/card_blog_trending.dart';
+import 'package:gearbox/blogs/presentation/widget/blog_trending_card.dart';
 import 'package:gearbox/blogs/presentation/widget/error_state_widget.dart';
 import 'package:gearbox/blogs/presentation/widget/loading/loading_blog_shimmer.dart';
-import 'package:gearbox/common/presentation/widget/card_blog.dart';
-import 'package:gearbox/core/di.dart';
-import 'package:gearbox/blogs/presentation/widget/blog_trending_card.dart';
 import 'package:gearbox/common/presentation/widget/blog_card.dart';
+import 'package:gearbox/core/di.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
@@ -47,102 +45,103 @@ class _BlogsScreenState extends ConsumerState<BlogsScreen> {
       BlogStateLoading() => const LoadingBlogShimmer(),
       BlogStateFailure() => const ErrorStateWidget(),
       BlogStateSuccess() => Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+          body: SafeArea(
+              child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(context.blogs, style: context.textTitle),
-                      Text(
-                        UtilsDate.getFormattedDay(locale, DateTime.now()),
-                        style: context.textDescription,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(context.blogs, style: context.textTitle),
+                          Text(
+                            UtilsDate.getFormattedDay(locale, DateTime.now()),
+                            style: context.textDescription,
+                          ),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: context.colorShadow),
+                          shape: BoxShape.circle,
+                        ),
+                        padding: const EdgeInsets.all(3),
+                        constraints: const BoxConstraints(
+                          maxWidth: 35,
+                          maxHeight: 35,
+                        ),
+                        child: IconButton(
+                          onPressed: () => _redirectToNotificationScreen(context),
+                          padding: const EdgeInsets.all(3),
+                          icon: const Icon(Icons.notifications_outlined, size: 20),
+                        ),
                       ),
                     ],
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: context.colorShadow),
-                      shape: BoxShape.circle,
+                  const SizedBox(height: 20),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: screenSize.height * 0.34),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      controller: controller,
+                      itemBuilder: (_, index) => BlogTrendingCard(
+                        blog: blogsState.paginatedResponseTrending.content[index],
+                      ),
+                      itemCount: blogsState.paginatedResponseTrending.content.length,
                     ),
-                    padding: const EdgeInsets.all(3),
-                    constraints: const BoxConstraints(
-                      maxWidth: 35,
-                      maxHeight: 35,
+                  ),
+                  const SizedBox(height: 10),
+                  if (pageCount > 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                      decoration: BoxDecoration(
+                        color: context.colorPageIndicatorBackground,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: SmoothPageIndicator(
+                        controller: controller,
+                        count: pageCount,
+                        effect: const WormEffect(
+                          dotHeight: 7,
+                          dotWidth: 7,
+                          activeDotColor: Colors.black,
+                          type: WormType.thinUnderground,
+                        ),
+                      ),
                     ),
-                    child: IconButton(
-                      onPressed: () => _redirectToNotificationScreen(context),
-                      padding: const EdgeInsets.all(3),
-                      icon: const Icon(Icons.notifications_outlined, size: 20),
-                    ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(context.latest, style: context.textCardBlogTitle),
+                      GestureDetector(
+                          onTap: () => _redirectToBlogListScreen(context),
+                          child: Text(context.viewMore, style: context.textLinkThin)),
+                    ],
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    // separatorBuilder: (_, __) => const SizedBox(height: 5),
+                    //physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (_, index) {
+                      return BlogCard(
+                        blog: blogsState.paginatedResponseLatest.content[index],
+                      );
+                    },
+                    itemCount: 3,
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: screenSize.height * 0.34),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  controller: controller,
-                  itemBuilder: (_, index) => CardBlogTrending(
-                    blog: blogsState.paginatedResponseTrending.content[index],
-                  ),
-                  itemCount: blogsState.paginatedResponseTrending.content.length,
-                ),
-              ),
-              const SizedBox(height: 10),
-              if (pageCount > 0)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-                  decoration: BoxDecoration(
-                    color: context.colorPageIndicatorBackground,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: SmoothPageIndicator(
-                    controller: controller,
-                    count: pageCount,
-                    effect: const WormEffect(
-                      dotHeight: 7,
-                      dotWidth: 7,
-                      activeDotColor: Colors.black,
-                      type: WormType.thinUnderground,
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(context.latest, style: context.textCardBlogTitle),
-                  GestureDetector(
-                      onTap: () => _redirectToBlogListScreen(context),
-                      child: Text(context.viewMore, style: context.textLinkThin)),
-                ],
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                separatorBuilder: (_, __) => const SizedBox(height: 5),
-                //physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (_, index) {
-                  return CardBlog(
-                    blog: blogsState.paginatedResponseLatest.content[index],
-                  );
-                },
-                itemCount: 3,
-              ),
-            ],
-          ),
+            ),
+          )),
         ),
-      )),
-    );
+    };
   }
 
   void _redirectToNotificationScreen(final BuildContext context) =>

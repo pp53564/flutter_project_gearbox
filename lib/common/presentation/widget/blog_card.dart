@@ -42,7 +42,7 @@ class BlogCard extends StatelessWidget {
                     // const SizedBox(height: 8),
                     const Spacer(),
                     BlogInfoRow(
-                      numberOfLikes: blog.numberOfLikes,
+                      numOfLikes: blog.numberOfLikes,
                       dateTime: blog.createDate,
                     ),
                   ],

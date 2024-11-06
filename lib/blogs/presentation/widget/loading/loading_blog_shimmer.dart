@@ -89,7 +89,7 @@ class LoadingBlogShimmer extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   decoration: BoxDecoration(
-                    color: context.colorWithOpacity,
+                    color: context.colorPaginationContainer,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(

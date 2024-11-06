@@ -75,7 +75,7 @@ class BlogTrendingCard extends StatelessWidget {
                   Text(blog.category.formattedEnum, style: context.textSmallThings),
                   BlogInfoRow(
                     dateTime: blog.createDate,
-                    numbOfLikes: blog.numberOfLikes,
+                    numOfLikes: blog.numberOfLikes,
                   ),
                 ],
               ),
