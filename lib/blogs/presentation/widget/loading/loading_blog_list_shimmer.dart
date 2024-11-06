@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/widget/loading/loading_card.dart';
 
-class LoadingListBlog extends StatelessWidget {
-  const LoadingListBlog({super.key});
+class LoadingBlogListShimmer extends StatelessWidget {
+  const LoadingBlogListShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gearbox/blogs/domain/entity/blog.dart';
 import 'package:gearbox/blogs/domain/usecase/blog_use_case.dart';
 import 'package:gearbox/blogs/presentation/controller/state/blog_state.dart';
 import 'package:gearbox/core/di.dart';
+import 'package:riverpod_infinite_scroll/riverpod_infinite_scroll.dart';
 
 class BlogLatestNotifier extends Notifier<BlogState> {
   late final BlogUseCase _usecase;
@@ -32,18 +34,22 @@ class BlogLatestNotifier extends Notifier<BlogState> {
     );
   }
 }
-//
-// class EasyExampleNotifier extends PagedNotifier<int, Blog> {
-//   final BlogUseCase _useCase;
-//
-//   EasyExampleNotifier(this._useCase)
-//       : super(
-//           load: (page, limit) async {
-//             final result = await _useCase.getLatestBlogs(page, limit);
-//           },
-//           nextPageKeyBuilder: NextPageKeyBuilderDefault.mysqlPagination,
-//         );
-// }
-//
-// final easyExampleProvider = StateNotifierProvider<EasyExampleNotifier, PagedState<int, Blog>>(
-//     (ref) => EasyExampleNotifier(ref.read(blogUseCaseProvider)));
+
+class BlogListPaginationNotifier extends PagedNotifier<int, Blog> {
+  final BlogUseCase _useCase;
+
+  BlogListPaginationNotifier(this._useCase)
+      : super(
+          load: (page, limit) async {
+            print('${page} + ${limit}');
+            final result = await _useCase.getLatestBlogs(page, limit);
+            return result.fold((failure) => throw new Exception(failure),
+                (paginatedResponse) => paginatedResponse.content);
+          },
+          nextPageKeyBuilder: NextPageKeyBuilderDefault.mysqlPagination,
+        );
+}
+
+final blogListPaginationProvider =
+    StateNotifierProvider<BlogListPaginationNotifier, PagedState<int, Blog>>(
+        (ref) => BlogListPaginationNotifier(ref.read(blogUseCaseProvider)));
