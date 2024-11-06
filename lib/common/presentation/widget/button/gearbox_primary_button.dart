@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class PrimaryButton extends StatelessWidget {
+class GearboxPrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final bool isLoading;
 
-  const PrimaryButton({
+  const GearboxPrimaryButton({
     super.key,
     required this.onPressed,
     required this.text,

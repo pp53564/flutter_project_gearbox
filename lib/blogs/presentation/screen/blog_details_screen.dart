@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/widget/avatar_row.dart';
-import 'package:gearbox/blogs/presentation/widget/bottom_sheet_with_buttons.dart';
-import 'package:gearbox/common/presentation/widget/back_button.dart';
+import 'package:gearbox/blogs/presentation/widget/bottom_sheet/blog_bottom_sheet_actions.dart';
+import 'package:gearbox/common/presentation/widget/button/gearbox_back_button.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class BlogDetailsScreen extends StatelessWidget {
@@ -16,21 +16,20 @@ class BlogDetailsScreen extends StatelessWidget {
         "A spokesperson for Porsche this week told us that it has no update to provide about next-generation CarPlay availability at this time, while a spokesperson for Aston Martin has yet to respond to our request for comment.\n\n";
 
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 100,
+        backgroundColor: context.colorBackground,
+        leading: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: GearboxBackButton(),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: BackButtonCustom(),
-                    ),
-                  ],
-                ),
                 const AvatarRow(
                   username: '@brunobenner',
                   avatarUrl: 'assets/images/avatar.png',
@@ -74,7 +73,7 @@ class BlogDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: const BottomSheetWithButtons(),
+      bottomSheet: const BlogBottomSheetActions(),
     );
   }
 }

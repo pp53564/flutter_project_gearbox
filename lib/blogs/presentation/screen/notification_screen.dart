@@ -32,7 +32,7 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -40,12 +40,13 @@ class NotificationScreen extends StatelessWidget {
                 context.notifications,
                 style: context.textTitle,
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 20),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: notifications.map((notification) => notification).toList(),
-                  ),
+                child: ListView.separated(
+                  itemBuilder: (_, index) => notifications[index],
+                  separatorBuilder: (_, __) => const SizedBox(height: 20),
+                  itemCount: notifications.length,
+                  physics: const ClampingScrollPhysics(),
                 ),
               )
             ],

@@ -3,31 +3,31 @@ import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class CardBlog extends StatelessWidget {
+class BlogCard extends StatelessWidget {
   final String type;
   final String title;
   final String imageUrl;
   final DateTime dateTime;
-  final int garageNumber;
+  final int numOfLikes;
 
-  const CardBlog(
-      {super.key,
-      required this.type,
-      required this.title,
-      required this.imageUrl,
-      required this.dateTime,
-      required this.garageNumber});
+  const BlogCard({
+    super.key,
+    required this.type,
+    required this.title,
+    required this.imageUrl,
+    required this.dateTime,
+    required this.numOfLikes,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => _redirectToDetailsScreen(context),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         color: context.colorBackground,
         elevation: 2,
+        shadowColor: const Color(0x59DADADA),
         child: Container(
           padding: const EdgeInsets.all(10),
           child: Row(
@@ -43,7 +43,7 @@ class CardBlog extends StatelessWidget {
                     Text(title, style: context.textTitleCardList),
                     const SizedBox(height: 8),
                     BlogInfoRow(
-                      garageNumber: garageNumber,
+                      numOfLikes: numOfLikes,
                       dateTime: dateTime,
                     ),
                   ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/blogs/presentation/widget/card_blog_trending.dart';
-import 'package:gearbox/common/presentation/widget/card_blog.dart';
+import 'package:gearbox/blogs/presentation/widget/blog_trending_card.dart';
+import 'package:gearbox/common/presentation/widget/blog_card.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
@@ -17,126 +17,131 @@ class BlogsScreen extends StatefulWidget {
 class _BlogsScreenState extends State<BlogsScreen> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   final pages = List.generate(
-      3,
-      (index) => CardBlogTrending(
-          textUrl: 'assets/images/car.png',
-          garageNumber: 69,
-          dateTime: DateTime.now().subtract(const Duration(minutes: 35)),
-          title: 'BMW released a new concept car',
-          subtitle: 'Concepts'));
+    3,
+    (index) => BlogTrendingCard(
+        textUrl: 'assets/images/car.png',
+        numOfLikes: 69,
+        dateTime: DateTime.now().subtract(const Duration(minutes: 35)),
+        title: 'BMW released a new concept car',
+        subtitle: 'Concepts'),
+  );
 
   final blogList = [
-    CardBlog(
+    BlogCard(
       type: 'Technology',
       title: 'Next generation Apple Car Play integration started',
       imageUrl: 'assets/images/screen.png',
       dateTime: DateTime.now().add(const Duration(days: -5)),
-      garageNumber: 11,
+      numOfLikes: 11,
     ),
-    CardBlog(
+    BlogCard(
       type: 'Hot new',
       title: 'Next generation Apple Car Play integration started',
       imageUrl: 'assets/images/car2.png',
       dateTime: DateTime.now().add(const Duration(minutes: -30)),
-      garageNumber: 11,
+      numOfLikes: 11,
     ),
-    CardBlog(
+    BlogCard(
       type: 'Electric cars',
       title: 'Next generation Apple Car Play integration started',
       imageUrl: 'assets/images/car3.png',
       dateTime: DateTime.now().add(const Duration(minutes: -30)),
-      garageNumber: 11,
+      numOfLikes: 11,
     )
   ];
 
   @override
   Widget build(BuildContext context) {
-    Locale locale = Localizations.localeOf(context);
+    final Size screenSize = MediaQuery.of(context).size;
+    final Locale locale = Localizations.localeOf(context);
 
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(context.blogs, style: context.textTitle),
-                      Text(
-                        UtilsDate.getFormattedDay(locale, DateTime.now()),
-                        style: context.textDescription,
-                      )
-                    ],
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: context.colorShadow),
-                      shape: BoxShape.circle,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(context.blogs, style: context.textTitle),
+                        Text(
+                          UtilsDate.getFormattedDay(locale, DateTime.now()),
+                          style: context.textDescription,
+                        ),
+                      ],
                     ),
-                    padding: const EdgeInsets.all(3),
-                    constraints: const BoxConstraints(
-                      maxWidth: 35,
-                      maxHeight: 35,
-                    ),
-                    child: IconButton(
-                      onPressed: () => _redirectToNotificationScreen(context),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: context.colorShadow),
+                        shape: BoxShape.circle,
+                      ),
                       padding: const EdgeInsets.all(3),
-                      icon: const Icon(Icons.notifications_outlined, size: 20),
+                      constraints: const BoxConstraints(
+                        maxWidth: 35,
+                        maxHeight: 35,
+                      ),
+                      child: IconButton(
+                        onPressed: () => _redirectToNotificationScreen(context),
+                        padding: const EdgeInsets.all(3),
+                        icon: const Icon(Icons.notifications_outlined, size: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: screenSize.height * 0.34),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    controller: controller,
+                    itemCount: pages.length,
+                    itemBuilder: (_, index) => pages[index % pages.length],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  decoration: BoxDecoration(
+                    color: context.colorPageIndicatorBackground,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: SmoothPageIndicator(
+                    controller: controller,
+                    count: pages.length,
+                    effect: const WormEffect(
+                      dotHeight: 7,
+                      dotWidth: 7,
+                      activeDotColor: Colors.black,
+                      type: WormType.thinUnderground,
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 300,
                 ),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  controller: controller,
-                  itemCount: pages.length,
-                  itemBuilder: (_, index) => pages[index % pages.length],
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(context.latest, style: context.textCardBlogTitle),
+                    Text(context.viewMore, style: context.textLinkThin),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                decoration: BoxDecoration(
-                  color: context.colorWithOpacity,
-                  borderRadius: BorderRadius.circular(20),
+                ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => blogList[index],
+                  separatorBuilder: (_, __) => const SizedBox(height: 5),
+                  itemCount: blogList.length,
+                  physics: const ClampingScrollPhysics(),
                 ),
-                child: SmoothPageIndicator(
-                  controller: controller,
-                  count: pages.length,
-                  effect: const WormEffect(
-                    dotHeight: 10,
-                    dotWidth: 10,
-                    activeDotColor: Colors.black,
-                    type: WormType.thinUnderground,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(context.latest, style: context.textCardBlogTitle),
-                  Text(context.viewMore, style: context.textLinkThin),
-                ],
-              ),
-              Column(
-                children: blogList.map((blog) => blog).toList(),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 
