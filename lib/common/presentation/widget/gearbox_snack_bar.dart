@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class CustomSnackBar {
-  const CustomSnackBar._();
+class GearboxSnackBar {
+  const GearboxSnackBar._();
 
   static void show(BuildContext context, final String text) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -15,9 +15,7 @@ class CustomSnackBar {
             Text(text, style: context.textDescriptionAuth),
           ],
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.fromLTRB(10, 0, 10, 30),
         backgroundColor: context.colorBackground,

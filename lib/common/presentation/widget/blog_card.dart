@@ -5,23 +5,23 @@ import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class CardBlog extends StatelessWidget {
+class BlogCard extends StatelessWidget {
   final Blog blog;
 
-  const CardBlog({super.key, required this.blog});
+  const BlogCard({super.key, required this.blog});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => _redirectToDetailsScreen(context),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         color: context.colorBackground,
         elevation: 2,
+        shadowColor: const Color(0x59DADADA),
         child: Container(
           padding: const EdgeInsets.all(10),
+          //nisam sigurna za ovaj height jel treba
           height: 130,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

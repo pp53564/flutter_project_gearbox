@@ -6,7 +6,12 @@ class AvatarRow extends StatelessWidget {
   final String? comment;
   final String avatarUrl;
 
-  const AvatarRow({super.key, required this.username, this.comment, required this.avatarUrl});
+  const AvatarRow({
+    super.key,
+    required this.username,
+    this.comment,
+    required this.avatarUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +30,17 @@ class AvatarRow extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(bottom: comment != null ? 0 : 2),
-                child: Text(
-                  username,
-                  style: context.textSmallThings,
-                ),
+                child: Text(username, style: context.textSmallThings),
               ),
               if (comment != null)
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Text(
                     comment!,
-                    style: context.textDescription,
+                    style: context.textComment,
                     textAlign: TextAlign.justify,
                   ),
                 ),
-              if (comment != null) const SizedBox(height: 10),
             ],
           ),
         ),

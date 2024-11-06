@@ -4,26 +4,24 @@ import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class CardBlogTrending extends StatelessWidget {
+class BlogTrendingCard extends StatelessWidget {
   final Blog blog;
 
-  const CardBlogTrending({
+  const BlogTrendingCard({
     super.key,
     required this.blog,
   });
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 350,
-      ),
+      constraints: BoxConstraints(maxWidth: screenSize.width - 40),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         color: context.colorBackground,
         elevation: 2,
+        shadowColor: const Color(0x59DADADA),
         child: Container(
           alignment: Alignment.topCenter,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -54,6 +52,7 @@ class CardBlogTrending extends StatelessWidget {
                         child: Text(
                           context.trending,
                           style: const TextStyle(
+                            fontSize: 12,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -69,7 +68,6 @@ class CardBlogTrending extends StatelessWidget {
                 style: context.textTitleCard,
                 overflow: TextOverflow.ellipsis,
               ),
-              // const SizedBox(height: 20),
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +75,7 @@ class CardBlogTrending extends StatelessWidget {
                   Text(blog.category.formattedEnum, style: context.textSmallThings),
                   BlogInfoRow(
                     dateTime: blog.createDate,
-                    numberOfLikes: blog.numberOfLikes,
+                    numbOfLikes: blog.numberOfLikes,
                   ),
                 ],
               ),

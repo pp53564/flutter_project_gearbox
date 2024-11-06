@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 
 class UtilsDate {
   static String getFormattedDay(final Locale locale, final DateTime dateTime) {
-    String formattedDateWithoutDay = DateFormat('EEEE, MMMM', locale.toString()).format(dateTime);
-    int day = int.parse(DateFormat('d').format(dateTime));
-    String suffix = getSuffix(day);
+    final String formattedDateWithoutDay =DateFormat('EEEE, MMMM', locale.toString()).format(dateTime);
+    final int day = int.parse(DateFormat('d').format(dateTime));
+    final String suffix = getSuffix(day);
     return locale.toString() == 'en'
         ? '$formattedDateWithoutDay $day$suffix'
         : '$formattedDateWithoutDay $day'.toCapitalized;

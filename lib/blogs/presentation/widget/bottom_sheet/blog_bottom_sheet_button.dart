@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
-class BottomContainer extends StatelessWidget {
+class BlogBottomSheetButton extends StatelessWidget {
   final String? text;
   final Icon icon;
 
-  const BottomContainer({super.key, this.text, required this.icon});
+  const BlogBottomSheetButton({
+    super.key,
+    this.text,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {

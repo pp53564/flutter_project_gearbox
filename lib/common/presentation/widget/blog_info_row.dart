@@ -5,9 +5,13 @@ import 'package:gearbox/core/utils/utils_date.dart';
 
 class BlogInfoRow extends StatelessWidget {
   final DateTime dateTime;
-  final int numberOfLikes;
+  final int numOfLikes;
 
-  const BlogInfoRow({super.key, required this.dateTime, required this.numberOfLikes});
+  const BlogInfoRow({
+    super.key,
+    required this.dateTime,
+    required this.numOfLikes,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +23,9 @@ class BlogInfoRow extends StatelessWidget {
         if (timeToShow != "")
           Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.access_time_outlined,
-                color: placeholderColorLight,
+                color: context.colorPlaceholder,
                 size: 16,
               ),
               const SizedBox(width: 2),
@@ -29,13 +33,13 @@ class BlogInfoRow extends StatelessWidget {
               const SizedBox(width: 10),
             ],
           ),
-        const Icon(
+        Icon(
           Icons.settings_outlined,
-          color: placeholderColorLight,
+          color: context.colorPlaceholder,
           size: 16,
         ),
         const SizedBox(width: 2),
-        Text(numberOfLikes.toString(), style: context.textSmallThings),
+        Text(numOfLikes.toString(), style: context.textSmallThings),
       ],
     );
   }

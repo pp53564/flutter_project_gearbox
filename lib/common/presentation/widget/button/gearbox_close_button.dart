@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CloseButtonCustom extends StatelessWidget {
-  const CloseButtonCustom({super.key});
+class GearboxCloseButton extends StatelessWidget {
+  const GearboxCloseButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,7 @@ class CloseButtonCustom extends StatelessWidget {
           size: 20,
         ),
         padding: EdgeInsets.zero,
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        onPressed: () => Navigator.pop(context),
       ),
     );
   }
