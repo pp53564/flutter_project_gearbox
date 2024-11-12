@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gearbox/blogs/domain/entity/blog.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class BlogTrendingCard extends StatelessWidget {
-  final String textUrl;
-  final DateTime dateTime;
-  final int numOfLikes;
-  final String title;
-  final String subtitle;
+  final Blog blog;
 
   const BlogTrendingCard({
     super.key,
-    required this.textUrl,
-    required this.dateTime,
-    required this.numOfLikes,
-    required this.title,
-    required this.subtitle,
+    required this.blog,
   });
 
   @override
@@ -37,7 +30,18 @@ class BlogTrendingCard extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Image.asset(textUrl, fit: BoxFit.cover),
+                  AspectRatio(
+                    aspectRatio: 5 / 3,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image(
+                        image: NetworkImage(blog.thumbnailImageUrl),
+                        // width: 330,
+                        // height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   Positioned(
                     top: 10,
                     left: 10,
@@ -63,18 +67,18 @@ class BlogTrendingCard extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                title,
+                blog.title,
                 style: context.textTitleCard,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 10),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(subtitle, style: context.textSmallThings),
+                  Text(context.categoryType(blog.category.name), style: context.textSmallThings),
                   BlogInfoRow(
-                    dateTime: dateTime,
-                    numOfLikes: numOfLikes,
+                    dateTime: blog.createDate,
+                    numOfLikes: blog.numberOfLikes,
                   ),
                 ],
               ),
