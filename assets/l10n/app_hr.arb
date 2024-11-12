@@ -89,11 +89,12 @@
   "comment_placeholder": "Tvoj komentar...",
   "notifications": "Obavijesti",
   "thereWasAnError": "Došlo je do greške",
-  "categoryType": "{categoryType, select, TECHNOLOGY{TEHNOLOGIJA} HOT_NEWS{AKTUALNO} ELECTRIC_CARS{ELEKTRIČNI AUTI} EXOTIC{EGZOTIČNO} OLDTIMER{KLASICI} other{DRUGO}}",
+  "categoryType": "{categoryType, select, TECHNOLOGY{Tehnologija} HOT_NEWS{Akutalno} ELECTRIC_CARS{Električni auti} EXOTIC{Egzotično} OLDTIMER{Klasici} other{Drugo}}",
   "@categoryType": {
     "description": "Category type",
     "placeholders": {
       "categoryType": {}
     }
-  }
+  },
+  "noTrendingBlogs": "Trenutno nema popularnih blogova"
 }

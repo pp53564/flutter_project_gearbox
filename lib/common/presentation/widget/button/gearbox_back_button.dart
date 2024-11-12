@@ -10,7 +10,7 @@ class GearboxBackButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).pop(),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           const Icon(Icons.arrow_back, size: 25),

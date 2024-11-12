@@ -30,13 +30,16 @@ class BlogTrendingCard extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Image(
-                      image: NetworkImage(blog.thumbnailImageUrl),
-                      width: 330,
-                      height: 200,
-                      fit: BoxFit.cover,
+                  AspectRatio(
+                    aspectRatio: 5 / 3,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image(
+                        image: NetworkImage(blog.thumbnailImageUrl),
+                        // width: 330,
+                        // height: 200,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Positioned(
@@ -72,7 +75,7 @@ class BlogTrendingCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(blog.category.formattedEnum, style: context.textSmallThings),
+                  Text(context.categoryType(blog.category.name), style: context.textSmallThings),
                   BlogInfoRow(
                     dateTime: blog.createDate,
                     numOfLikes: blog.numberOfLikes,

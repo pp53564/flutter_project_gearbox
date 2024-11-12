@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gearbox/auth/presentation/controller/state/auth_state.dart';
 import 'package:gearbox/auth/presentation/screen/sign_in_screen.dart';
 import 'package:gearbox/auth/presentation/screen/sign_up_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_details_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_list_screen.dart';
-import 'package:gearbox/blogs/presentation/screen/blogs_screen.dart';
+import 'package:gearbox/blogs/presentation/screen/blog_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/notification_screen.dart';
 import 'package:gearbox/common/presentation/screen/home_screen.dart';
 
@@ -18,21 +19,24 @@ class RouteGenerator {
 
   RouteGenerator._();
 
-  static Route<dynamic> generateRoute(final RouteSettings settings) {
+  static Route<dynamic> generateRoute(RouteSettings settings, AuthState authState) {
     switch (settings.name) {
-      case RouteGenerator.signInScreen:
+      case signInScreen:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
-      case RouteGenerator.signUpScreen:
+      case signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
-      case RouteGenerator.homeScreen:
+      case homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-      case RouteGenerator.blogsScreen:
+      case blogsScreen:
         return MaterialPageRoute(builder: (_) => const BlogsScreen());
-      case RouteGenerator.blogDetailsScreen:
-        return MaterialPageRoute(builder: (_) => const BlogDetailsScreen());
-      case RouteGenerator.notificationScreen:
+      case blogDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => const BlogDetailsScreen(),
+          settings: settings,
+        );
+      case notificationScreen:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
-      case RouteGenerator.blogListScreen:
+      case blogListScreen:
         return MaterialPageRoute(builder: (_) => const BlogListScreen());
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());

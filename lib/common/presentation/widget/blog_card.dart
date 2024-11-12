@@ -13,7 +13,7 @@ class BlogCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _redirectToDetailsScreen(context),
+      onTap: () => _redirectToDetailsScreen(context, blog),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         color: context.colorBackground,
@@ -21,7 +21,7 @@ class BlogCard extends StatelessWidget {
         shadowColor: const Color(0x59DADADA),
         child: Container(
           padding: const EdgeInsets.all(10),
-          //nisam sigurna za ovaj height jel treba
+          //nisam sigurna za ovaj height jel treba - vjerojatno ne treba
           height: 130,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,6 +70,6 @@ class BlogCard extends StatelessWidget {
     );
   }
 
-  void _redirectToDetailsScreen(final BuildContext context) =>
-      Navigator.of(context).pushNamed(RouteGenerator.blogDetailsScreen);
+  void _redirectToDetailsScreen(final BuildContext context, Blog blog) =>
+      Navigator.of(context).pushNamed(RouteGenerator.blogDetailsScreen, arguments: blog);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/blogs/presentation/widget/loading/placeholder_card.dart';
+import 'package:gearbox/blogs/presentation/widget/loading/loading_placeholder_card.dart';
+import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingCard extends StatelessWidget {
@@ -12,7 +13,8 @@ class LoadingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       elevation: 2,
-      color: Colors.grey.shade200,
+      color: context.colorBackground,
+      shadowColor: const Color(0x59DADADA),
       child: Shimmer.fromColors(
         baseColor: Colors.grey.shade300,
         highlightColor: Colors.grey.shade100,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/blogs/presentation/widget/loading/placeholder_card.dart';
+import 'package:gearbox/blogs/presentation/widget/loading/loading_card.dart';
+import 'package:gearbox/blogs/presentation/widget/loading/loading_placeholder_card.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:gearbox/core/utils/utils_date.dart';
@@ -52,7 +53,8 @@ class LoadingBlogShimmer extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.grey.shade200,
+                  color: context.colorBackground,
+                  shadowColor: const Color(0x59DADADA),
                   elevation: 2,
                   child: Column(
                     children: [
@@ -87,20 +89,20 @@ class LoadingBlogShimmer extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                   decoration: BoxDecoration(
-                    color: context.colorPaginationContainer,
+                    color: context.colorPageIndicatorBackground,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: List.generate(
                       3,
-                      (index) => Padding(
+                      (_) => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 3),
                         child: Container(
-                          width: 10,
-                          height: 10,
+                          width: 7,
+                          height: 7,
                           decoration: const BoxDecoration(
                             color: Colors.grey,
                             shape: BoxShape.circle,
@@ -118,128 +120,10 @@ class LoadingBlogShimmer extends StatelessWidget {
                     Text(context.viewMore, style: context.textLinkThin),
                   ],
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  elevation: 2,
-                  color: Colors.grey.shade200,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    enabled: true,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      height: 130,
-                      child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                PlaceholderCard(height: 10, width: 50),
-                                SizedBox(height: 8),
-                                PlaceholderCard(height: 40, width: 200),
-                                Spacer(),
-                                PlaceholderCard(height: 10, width: 100),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              PlaceholderCard(height: 100, width: 100),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  elevation: 2,
-                  color: Colors.grey.shade200,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    enabled: true,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      height: 130,
-                      child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                PlaceholderCard(height: 10, width: 50),
-                                SizedBox(height: 8),
-                                PlaceholderCard(height: 40, width: 200),
-                                Spacer(),
-                                PlaceholderCard(height: 10, width: 100),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              PlaceholderCard(height: 100, width: 100),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  elevation: 2,
-                  color: Colors.grey.shade200,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    enabled: true,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      height: 130,
-                      child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                PlaceholderCard(height: 10, width: 50),
-                                SizedBox(height: 8),
-                                PlaceholderCard(height: 40, width: 200),
-                                Spacer(),
-                                PlaceholderCard(height: 10, width: 100),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              PlaceholderCard(height: 100, width: 100),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                Column(
+                  children: List.generate(3, (index) {
+                    return const LoadingCard();
+                  }),
                 ),
               ],
             ),

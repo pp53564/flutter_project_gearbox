@@ -99,4 +99,6 @@ extension LocalizationExtension on BuildContext {
   String dateDiffYears(int diff) => AppLocalizations.of(this)!.dateDiffYears(diff);
 
   String categoryType(String categoryType) => AppLocalizations.of(this)!.categoryType(categoryType);
+
+  String get noTrendingBlogs => AppLocalizations.of(this)!.noTrendingBlogs;
 }

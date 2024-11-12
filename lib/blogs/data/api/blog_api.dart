@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:gearbox/blogs/data/model/like_request.dart';
 import 'package:gearbox/blogs/domain/entity/paginated_response.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -20,4 +22,7 @@ abstract class BlogApi {
     @Path('page') int page,
     @Path('size') int size,
   );
+
+  @POST('/toggleLike')
+  Future<void> toggleLike(@Body() LikeRequest request);
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gearbox/blogs/presentation/controller/state/blog_state.dart';
 import 'package:gearbox/blogs/presentation/widget/blog_trending_card.dart';
 import 'package:gearbox/blogs/presentation/widget/error_state_widget.dart';
 import 'package:gearbox/blogs/presentation/widget/loading/loading_blog_shimmer.dart';
@@ -20,33 +19,25 @@ class BlogsScreen extends StatefulHookConsumerWidget {
 }
 
 class _BlogsScreenState extends ConsumerState<BlogsScreen> {
-  final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  final controller = PageController(viewportFraction: 1.0, keepPage: true);
 
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref.read(blogNotifierProvider.notifier).getTrendingBlogs(0, 3);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
     final Locale locale = Localizations.localeOf(context);
+    final blogs = ref.watch(blogNotifierProvider);
 
-    final blogsState = ref.watch(blogNotifierProvider);
-    int pageCount = 0;
-    if (blogsState is BlogStateSuccess) {
-      pageCount = blogsState.paginatedResponseTrending.content.length;
-    }
-
-    return switch (blogsState) {
-      BlogStateLoading() => const LoadingBlogShimmer(),
-      BlogStateFailure() => const ErrorStateWidget(),
-      BlogStateSuccess() => Scaffold(
-          body: SafeArea(
-              child: SingleChildScrollView(
+    return blogs.when(
+      error: (_, __) => const ErrorStateWidget(),
+      loading: () => const LoadingBlogShimmer(),
+      data: (blogs) => Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -84,19 +75,25 @@ class _BlogsScreenState extends ConsumerState<BlogsScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: screenSize.height * 0.34),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      controller: controller,
-                      itemBuilder: (_, index) => BlogTrendingCard(
-                        blog: blogsState.paginatedResponseTrending.content[index],
+                  if (blogs.trendingBlogs.isNotEmpty)
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: screenSize.height * 0.34),
+                      child: PageView.builder(
+                        scrollDirection: Axis.horizontal,
+                        controller: controller,
+                        itemBuilder: (_, index) => BlogTrendingCard(
+                          blog: blogs.trendingBlogs[index],
+                        ),
+                        itemCount: blogs.trendingBlogs.length,
                       ),
-                      itemCount: blogsState.paginatedResponseTrending.content.length,
                     ),
-                  ),
+                  if (blogs.trendingBlogs.isEmpty)
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(context.noTrendingBlogs, style: context.textDescription),
+                    ),
                   const SizedBox(height: 10),
-                  if (pageCount > 0)
+                  if (blogs.trendingBlogs.isNotEmpty)
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                       decoration: BoxDecoration(
@@ -105,7 +102,7 @@ class _BlogsScreenState extends ConsumerState<BlogsScreen> {
                       ),
                       child: SmoothPageIndicator(
                         controller: controller,
-                        count: pageCount,
+                        count: blogs.trendingBlogs.length,
                         effect: const WormEffect(
                           dotHeight: 7,
                           dotWidth: 7,
@@ -120,18 +117,17 @@ class _BlogsScreenState extends ConsumerState<BlogsScreen> {
                     children: [
                       Text(context.latest, style: context.textCardBlogTitle),
                       GestureDetector(
-                          onTap: () => _redirectToBlogListScreen(context),
-                          child: Text(context.viewMore, style: context.textLinkThin)),
+                        onTap: () => _redirectToBlogListScreen(context),
+                        child: Text(context.viewMore, style: context.textLinkThin),
+                      ),
                     ],
                   ),
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
-                    // separatorBuilder: (_, __) => const SizedBox(height: 5),
-                    //physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (_, index) {
                       return BlogCard(
-                        blog: blogsState.paginatedResponseLatest.content[index],
+                        blog: blogs.latestBlogs[index],
                       );
                     },
                     itemCount: 3,
@@ -139,9 +135,10 @@ class _BlogsScreenState extends ConsumerState<BlogsScreen> {
                 ],
               ),
             ),
-          )),
+          ),
         ),
-    };
+      ),
+    );
   }
 
   void _redirectToNotificationScreen(final BuildContext context) =>

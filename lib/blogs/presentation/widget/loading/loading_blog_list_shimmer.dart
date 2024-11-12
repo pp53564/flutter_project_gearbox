@@ -6,24 +6,12 @@ class LoadingBlogListShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                LoadingCard(),
-                LoadingCard(),
-                LoadingCard(),
-                LoadingCard(),
-                LoadingCard(),
-                LoadingCard(),
-              ],
-            ),
-          ),
-        ),
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: List.generate(6, (index) {
+          return const LoadingCard();
+        }),
       ),
     );
   }
