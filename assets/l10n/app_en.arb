@@ -96,6 +96,7 @@
       "categoryType": {}
     }
   },
-  "noTrendingBlogs": "Currently, there are no trending blogs to show"
+  "noTrendingBlogs": "Currently, there are no trending blogs to show",
+  "search": "Search"
 }
 

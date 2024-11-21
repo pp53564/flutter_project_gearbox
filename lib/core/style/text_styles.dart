@@ -22,6 +22,7 @@ const _linkThinTextStyle =
     TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: primaryColorLight);
 const _smallThingsTextStyle =
     TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: placeholderColorLight);
+const _smallTitleTextStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w700);
 
 const _commentTextStyle = TextStyle(fontSize: 14, height: 1.2);
 
@@ -51,6 +52,8 @@ extension CustomTextStyle on TextTheme {
   TextStyle get linkThinText => _linkThinTextStyle;
 
   TextStyle get titleCardListText => _titleCardListTextStyle;
-  
+
   TextStyle get commentText => _commentTextStyle;
+
+  TextStyle get smallTitle => _smallTitleTextStyle;
 }

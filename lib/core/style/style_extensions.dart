@@ -25,10 +25,10 @@ extension StyleExtension on BuildContext {
 
   Color get colorPlaceholder => Theme.of(this).extension<AppColors>()!.placeholderColor!;
 
-  Color get colorBottomNavigationRow =>
-      Theme.of(this).extension<AppColors>()!.bottomNavigationRow!;
+  Color get colorBottomNavigationRow => Theme.of(this).extension<AppColors>()!.bottomNavigationRow!;
 
-  Color get colorPageIndicatorBackground => Theme.of(this).extension<AppColors>()!.pageIndicatorBackground!;
+  Color get colorPageIndicatorBackground =>
+      Theme.of(this).extension<AppColors>()!.pageIndicatorBackground!;
 
   TextStyle get textTitle => Theme.of(this).textTheme.title;
 
@@ -55,6 +55,8 @@ extension StyleExtension on BuildContext {
   TextStyle get textLinkThin => Theme.of(this).textTheme.linkThinText;
 
   TextStyle get textTitleCardList => Theme.of(this).textTheme.titleCardListText;
-  
+
   TextStyle get textComment => Theme.of(this).textTheme.commentText;
+
+  TextStyle get textSmallTitle => Theme.of(this).textTheme.smallTitle;
 }

@@ -96,5 +96,6 @@
       "categoryType": {}
     }
   },
-  "noTrendingBlogs": "Trenutno nema popularnih blogova"
+  "noTrendingBlogs": "Trenutno nema popularnih blogova",
+  "search": "Pretraži"
 }

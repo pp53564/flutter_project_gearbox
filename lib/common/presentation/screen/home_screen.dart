@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_screen.dart';
+import 'package:gearbox/blogs/presentation/screen/explore_screen.dart';
 import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:gearbox/settings/presentation/screen/settings_screen.dart';
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final _screens = const [
     BlogsScreen(),
-    BlogsScreen(),
+    ExploreScreen(),
     BlogsScreen(),
     BlogsScreen(),
     SettingsScreen(),

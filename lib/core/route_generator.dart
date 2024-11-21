@@ -5,6 +5,7 @@ import 'package:gearbox/auth/presentation/screen/sign_up_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_details_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_list_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/blog_screen.dart';
+import 'package:gearbox/blogs/presentation/screen/explore_screen.dart';
 import 'package:gearbox/blogs/presentation/screen/notification_screen.dart';
 import 'package:gearbox/common/presentation/screen/home_screen.dart';
 
@@ -16,6 +17,7 @@ class RouteGenerator {
   static const String blogDetailsScreen = '/details';
   static const String notificationScreen = '/notifications';
   static const String blogListScreen = '/allBlogs';
+  static const String exploreScreen = '/explore';
 
   RouteGenerator._();
 
@@ -38,6 +40,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case blogListScreen:
         return MaterialPageRoute(builder: (_) => const BlogListScreen());
+      case exploreScreen:
+        return MaterialPageRoute(builder: (_) => const ExploreScreen());
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
     }
