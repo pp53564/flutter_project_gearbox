@@ -15,6 +15,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authNotifierProvider);
     final locale = ref.watch(localeNotifierProvider);
 
     return MaterialApp(
@@ -24,7 +25,7 @@ class MyApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       initialRoute: RouteGenerator.homeScreen,
-      onGenerateRoute: RouteGenerator.generateRoute,
+      onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings, authState),
     );
   }
 }

@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gearbox/blogs/domain/entity/blog.dart';
 import 'package:gearbox/common/presentation/widget/blog_info_row.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/route_generator.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 
 class BlogCard extends StatelessWidget {
-  final String type;
-  final String title;
-  final String imageUrl;
-  final DateTime dateTime;
-  final int numOfLikes;
+  final Blog blog;
 
-  const BlogCard({
-    super.key,
-    required this.type,
-    required this.title,
-    required this.imageUrl,
-    required this.dateTime,
-    required this.numOfLikes,
-  });
+  const BlogCard({super.key, required this.blog});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _redirectToDetailsScreen(context),
+      onTap: () => _redirectToDetailsScreen(context, blog),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         color: context.colorBackground,
@@ -30,6 +21,8 @@ class BlogCard extends StatelessWidget {
         shadowColor: const Color(0x59DADADA),
         child: Container(
           padding: const EdgeInsets.all(10),
+          //nisam sigurna za ovaj height jel treba - vjerojatno ne treba
+          height: 130,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,27 +31,37 @@ class BlogCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(type, style: context.textSmallThings),
+                    Text(context.categoryType(blog.category.name), style: context.textSmallThings),
                     const SizedBox(height: 8),
-                    Text(title, style: context.textTitleCardList),
-                    const SizedBox(height: 8),
+                    Text(
+                      blog.title,
+                      style: context.textTitleCardList,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
+                    // const SizedBox(height: 8),
+                    const Spacer(),
                     BlogInfoRow(
-                      numOfLikes: numOfLikes,
-                      dateTime: dateTime,
+                      numOfLikes: blog.numberOfLikes,
+                      dateTime: blog.createDate,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 20),
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 80,
-                  maxWidth: 86,
-                ),
-                child: Image.asset(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image(
+                      image: NetworkImage(blog.thumbnailImageUrl),
+                      width: 120,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -67,6 +70,6 @@ class BlogCard extends StatelessWidget {
     );
   }
 
-  void _redirectToDetailsScreen(final BuildContext context) =>
-      Navigator.of(context).pushNamed(RouteGenerator.blogDetailsScreen);
+  void _redirectToDetailsScreen(final BuildContext context, Blog blog) =>
+      Navigator.of(context).pushNamed(RouteGenerator.blogDetailsScreen, arguments: blog);
 }

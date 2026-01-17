@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gearbox/core/localization_extension.dart';
 import 'package:gearbox/core/style/style_extensions.dart';
 import 'package:gearbox/core/utils/utils_date.dart';
 
 class BlogInfoRow extends StatelessWidget {
   final DateTime dateTime;
-  final int numOfLikes;
+  final int? numOfLikes;
+  final String? category;
 
   const BlogInfoRow({
     super.key,
     required this.dateTime,
-    required this.numOfLikes,
+    this.numOfLikes,
+    this.category,
   });
 
   @override
@@ -29,16 +32,26 @@ class BlogInfoRow extends StatelessWidget {
               ),
               const SizedBox(width: 2),
               Text(timeToShow, style: context.textSmallThings),
-              const SizedBox(width: 22),
+              const SizedBox(width: 10),
             ],
           ),
-        Icon(
-          Icons.settings_outlined,
-          color: context.colorPlaceholder,
-          size: 16,
-        ),
-        const SizedBox(width: 2),
-        Text(numOfLikes.toString(), style: context.textSmallThings),
+        if (numOfLikes != null)
+          Row(
+            children: [
+              Icon(
+                Icons.settings_outlined,
+                color: context.colorPlaceholder,
+                size: 16,
+              ),
+              const SizedBox(width: 2),
+              Text(numOfLikes.toString(), style: context.textSmallThings),
+            ],
+          ),
+        if (category != null)
+          Row(children: [
+            const SizedBox(width: 10),
+            Text(context.categoryType(category!), style: context.textSmallThings),
+          ])
       ],
     );
   }

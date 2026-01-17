@@ -87,6 +87,15 @@
   "back": "Back",
   "comments": "Comments",
   "comment_placeholder": "Your comment...",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+  "thereWasAnError": "There was an error",
+  "categoryType": "{categoryType, select, TECHNOLOGY{Technology} HOT_NEWS{Hot news} ELECTRIC_CARS{Electric cars} EXOTIC{Exotic} OLDTIMER{Oldtimer} other{Other}}",
+  "@categoryType": {
+    "description": "Category type",
+    "placeholders": {
+      "categoryType": {}
+    }
+  },
+  "noTrendingBlogs": "Currently, there are no trending blogs to show"
 }
 
